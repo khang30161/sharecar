@@ -24,6 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+
         >
 
         <TextView
@@ -49,13 +50,13 @@
                 android:textColor="@android:color/holo_green_light"  />
             <ImageButton
 
-            android:id="@+id/main_act_sharecar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:adjustViewBounds="true"
+                android:id="@+id/main_act_sharecar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
 
-            android:scaleType="fitCenter"
-            android:src="@drawable/share" />
+                android:scaleType="fitCenter"
+                android:src="@drawable/share" />
         </android.support.design.widget.TextInputLayout>
 
 
@@ -71,23 +72,19 @@
                 android:textStyle="italic"
                 android:fontFamily="@string/common_google_play_services_enable_button"
                 android:textColor="@android:color/holo_green_light"/>                />
-        <ImageButton
-            android:id="@+id/main_act_rentcar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            <ImageButton
+                android:id="@+id/main_act_rentcar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
 
-            android:adjustViewBounds="true"
+                android:adjustViewBounds="true"
 
-            android:scaleType="fitCenter"
-            android:src="@drawable/thue" />
+                android:scaleType="fitCenter"
+                android:src="@drawable/thue" />
         </android.support.design.widget.TextInputLayout>
 
     </LinearLayout>
-    <FrameLayout
-        android:id="@+id/frame_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
 
     <android.support.design.widget.BottomNavigationView
         android:layout_alignParentBottom="true"
@@ -101,6 +98,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:menu="@menu/bottom_nav_menu" />
+
 
 
 
