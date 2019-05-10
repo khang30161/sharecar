@@ -1,5 +1,6 @@
 package com.example.khang.sharecar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -8,14 +9,26 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
-
+    private ImageButton mShare, mRent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mRent=findViewById(R.id.main_act_rentcar);
+        mRent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(MainActivity.this, DriverMapActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
 
         //loading the default fragment
         loadFragment(new DashboardFragment());
@@ -36,11 +49,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 break;
 
             case R.id.navigation_dashboard:
-                fragment = new DashboardFragment();
+                fragment=new DashboardFragment();
                 break;
-
-
-        }
+ }
 
         return loadFragment(fragment);
     }
