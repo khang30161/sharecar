@@ -21,6 +21,15 @@ public class DriverShareCar extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent=new Intent(DriverShareCar.this, DriverMapActivity.class);
                 startActivity(intent);
+                finish();
+            }
+        });
+        mDriver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(DriverShareCar.this, DriverMapActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
     }
