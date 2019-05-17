@@ -30,6 +30,7 @@ public class Registration extends AppCompatActivity {
         mREmail = findViewById(R.id.signup_input_email);
         mRPassword = findViewById(R.id.signup_input_password);
         mSignup = findViewById(R.id.btn_signup);
+
         mAuth = FirebaseAuth.getInstance();
         mSignup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,5 +56,7 @@ public class Registration extends AppCompatActivity {
 
                 });
             };
-                   });}}
+                   });
+    }
+}
 

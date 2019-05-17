@@ -37,6 +37,13 @@ public class DashboardFragment extends Fragment  {
 
             }
         });
+        mRent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getActivity(), RentCar.class);
+                startActivity(intent);
+            }
+        });
 
 
         return view;
