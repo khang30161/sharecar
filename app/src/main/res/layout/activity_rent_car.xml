@@ -3,9 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_marginVertical="10dp"
     tools:context=".RentCar">
+    <android.support.v7.widget.SearchView
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:queryHint="Tìm kiếm gì đó tại đây?"
+        android:background="@android:color/holo_green_light">
+
+    </android.support.v7.widget.SearchView>
 
     <android.support.design.widget.TextInputLayout
         android:layout_marginTop="10dp"

@@ -17,9 +17,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RentCarAdapter"></activity>
+        <activity android:name=".NeedRentActivity"></activity>
+        <activity android:name=".RentCarAdapter" />
         <activity android:name=".WantRentActivity" />
-        <activity android:name=".StartRent" />
         <activity android:name=".RentCar" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

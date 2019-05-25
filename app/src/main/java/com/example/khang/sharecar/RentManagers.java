@@ -1,8 +1,7 @@
 package com.example.khang.sharecar;
 
-import io.realm.RealmObject;
-
-public class RentManagers extends RealmObject {
+public class RentManagers  {
+    private String id;
     private String startdate;
     private String enddate;
     private String location;
@@ -12,31 +11,48 @@ public class RentManagers extends RealmObject {
         return startdate;
     }
 
-    public void setStartdate(String startdate) {
-        this.startdate = startdate;
-    }
-
     public String getEnddate() {
         return enddate;
-    }
-
-    public void setEnddate(String enddate) {
-        this.enddate = enddate;
     }
 
     public String getLocation() {
         return location;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setStartdate(String startdate) {
+        this.startdate = startdate;
+    }
+
+    public void setEnddate(String enddate) {
+        this.enddate = enddate;
+    }
+
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
     }
 
     public String getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public RentManagers() {
+        this.id=id;
+        this.startdate = startdate;
+        this.enddate = enddate;
+        this.location = location;
         this.price = price;
+
     }
 }

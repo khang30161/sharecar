@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:scaleType="fitCenter"
 
-    tools:context=".XemayFragment">
+    tools:context=".OtoFragment">
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
@@ -24,19 +24,19 @@
 
 
             <Button
-                android:id="@+id/need_to_rent"
+                android:id="@+id/need_to_rent_car"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="I Need to rent a Bike"
+                android:text="I Need to rent a car"
 
                 />
 
 
             <Button
-                android:id="@+id/want_to_rent"
+                android:id="@+id/want_to_rent_car"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="I Want to rent a bike" />
+                android:text="I Want to rent a car" />
 
         </LinearLayout>
     </android.support.design.widget.TextInputLayout>

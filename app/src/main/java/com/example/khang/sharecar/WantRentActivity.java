@@ -1,10 +1,10 @@
 package com.example.khang.sharecar;
 
-import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,6 +13,11 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
 
@@ -32,12 +37,18 @@ public class WantRentActivity extends AppCompatActivity {
     TextView mLocation,  mStartdate, mEnddate;
     EditText mPrice;
     Button finish;
+    FirebaseAnalytics mFirebaseAnalytics;
+    DatabaseReference databaseReference;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_want_rent);
+
+        databaseReference=FirebaseDatabase.getInstance().getReference("Id_Rent");
+
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         mLocation=findViewById(R.id.selection);
         mEnddate=findViewById(R.id.endday);
         mStartdate=findViewById(R.id.startday);
@@ -46,12 +57,31 @@ public class WantRentActivity extends AppCompatActivity {
         finish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent=new Intent(WantRentActivity.this, RentCar.class);
+                startActivity(intent);
+
                 String location=mLocation.getText().toString();
                 String enddate=mEnddate.getText().toString();
                 String startdate=mStartdate.getText().toString();
                 String price=mPrice.getText().toString();
-                byBundle(location,enddate,startdate,price);
+                if(!TextUtils.isEmpty(location)&& !TextUtils.isEmpty(startdate)){
+                String id=databaseReference.push().getKey();
+                RentManagers rentManager=new RentManagers();
+                rentManager.setLocation(location);
+                rentManager.setStartdate(startdate);
+                rentManager.setEnddate(enddate);
+                rentManager.setPrice(price);
+                databaseReference.child(id).setValue(rentManager);
+                mLocation.setText("");
+                mEnddate.setText("");
+                mStartdate.setText("");
+                mPrice.setText("");
+
+            }else{
+                    Toast.makeText(WantRentActivity.this, "please",Toast.LENGTH_LONG).show();
+                }
             }
+
         });
 
         this.showDatePickerDialog();
@@ -71,17 +101,7 @@ public class WantRentActivity extends AppCompatActivity {
         spin.setOnItemSelectedListener(new MyProcessEvent());
     }
 
-    private void byBundle(String location, String enddate, String startdate, String price) {
-        Intent intent = new Intent(WantRentActivity.this, RentCar.class);
-        Bundle bundle = new Bundle();
-        bundle.putString(LOCATION, location);
-        bundle.putString(STARTDATE, startdate);
-        bundle.putString(ENDDATE, enddate);
-        bundle.putString(PRICE, price);
-        intent.putExtra(BUNDLE, bundle);
-        setResult(Activity.RESULT_OK, intent);
-        finish();
-    }
+
 
     private void endDatePickerDialog() {
         Button endDatePickerDialogButton = (Button)findViewById(R.id.endDatePickerDialogButton);
