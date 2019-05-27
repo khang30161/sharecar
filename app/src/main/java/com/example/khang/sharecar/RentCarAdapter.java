@@ -6,8 +6,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.engine.Resource;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
@@ -15,14 +19,17 @@ import java.util.List;
 public class RentCarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Action action;
     private Context context;
+    private Resource resource;
     private List<RentManagers> rentManagers;
 
 
 
-    public RentCarAdapter(List<RentManagers> rentManagers) {
+    public RentCarAdapter(List<RentManagers> rentManagers, Context context) {
         this.rentManagers=  rentManagers;
         this.context=  context;
         this.action=action;
+        this.resource=resource;
+
     }
 
     public interface Action {
@@ -54,6 +61,10 @@ public class RentCarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         holder.mStartTime.setText(rentManagers.get(position).getStartdate());
         holder.mEndTime.setText(rentManagers.get(position).getEnddate());
         holder.mPrice.setText(rentManagers.get(position).getPrice());
+        Glide.with(context)
+                .load(rentManagers.get(position).getUrl())
+
+                .into(holder.mPic);
     }
 
     @Override
@@ -64,13 +75,16 @@ public class RentCarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
     public class Viewholder extends RecyclerView.ViewHolder{
         private TextView mLocation, mPrice, mEndTime, mStartTime;
+        ImageView mPic;
 
-        public Viewholder(View itemview) {
-            super(itemview);
-            mLocation=itemview.findViewById(R.id.location_adapter);
-            mEndTime=itemview.findViewById(R.id.endtime_adapter);
-            mPrice=itemview.findViewById(R.id.price_adapter);
-            mStartTime=itemview.findViewById(R.id.starttime_adapter);
+        public Viewholder(View view) {
+            super(view);
+            mLocation=view.findViewById(R.id.location_adapter);
+            mEndTime=view.findViewById(R.id.endtime_adapter);
+            mPrice=view.findViewById(R.id.price_adapter);
+            mStartTime=view.findViewById(R.id.starttime_adapter);
+            mPic=view.findViewById(R.id.iv_adapter);
+
         }
     }
 }

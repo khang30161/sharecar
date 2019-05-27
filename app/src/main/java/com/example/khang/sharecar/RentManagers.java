@@ -1,11 +1,35 @@
 package com.example.khang.sharecar;
 
+import android.net.Uri;
+import android.widget.ImageView;
+
+import com.google.firebase.storage.UploadTask;
+
 public class RentManagers  {
     private String id;
     private String startdate;
-    private String enddate;
+
+     private String enddate;
     private String location;
     private String price;
+    private ImageView picture;
+    private String url;
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public ImageView getPicture() {
+        return picture;
+    }
+
+    public void setPicture(ImageView picture) {
+        this.picture = picture;
+    }
 
     public String getStartdate() {
         return startdate;
