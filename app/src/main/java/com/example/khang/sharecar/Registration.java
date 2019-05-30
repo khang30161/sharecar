@@ -22,6 +22,7 @@ public class Registration extends AppCompatActivity {
     private EditText mREmail, mRPassword;
     private Button mSignup;
     private FirebaseAuth mAuth;
+    DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +31,7 @@ public class Registration extends AppCompatActivity {
         mREmail = findViewById(R.id.signup_input_email);
         mRPassword = findViewById(R.id.signup_input_password);
         mSignup = findViewById(R.id.btn_signup);
-
+        databaseReference=FirebaseDatabase.getInstance().getReference().child("Users").child("Drivers");
         mAuth = FirebaseAuth.getInstance();
         mSignup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,15 +47,17 @@ public class Registration extends AppCompatActivity {
                         if (!task.isSuccessful()) {
                             Toast.makeText(Registration.this, "sign up error", Toast.LENGTH_SHORT).show();
                         } else {
-                            String user_id = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
-                            DatabaseReference current_user_db = FirebaseDatabase.getInstance().getReference().child("Users").child("Drivers").child(user_id);
-                            current_user_db.setValue(true);
+
+
                             Toast.makeText(Registration.this, "Sign Up Success", Toast.LENGTH_SHORT).show();
                         }
 
                    }
 
                 });
+                mAuth=FirebaseAuth.getInstance();
+                String user_id = mAuth.getCurrentUser().getUid();
+                databaseReference.child(user_id).setValue(true);
             };
                    });
     }

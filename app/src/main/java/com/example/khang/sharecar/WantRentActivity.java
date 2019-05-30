@@ -87,13 +87,14 @@ public class WantRentActivity extends AppCompatActivity {
         finish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                loadImage();
                 Intent intent=new Intent(WantRentActivity.this, RentCar.class);
                 startActivity(intent);
+                finish();
 
 
 
 
-                loadImage();
             }
 
         });

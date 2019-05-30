@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:background="@color/colorAccent">
+        android:background="@color/colorPrimary">
 
 
         <LinearLayout
@@ -27,7 +27,7 @@
                 android:id="@+id/need_to_rent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="I Need to rent a Bike"
+                android:text="Tôi cần thuê xe máy"
 
                 />
 
@@ -36,7 +36,7 @@
                 android:id="@+id/want_to_rent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="I Want to rent a bike" />
+                android:text="Tôi muốn cho thuê xe máy" />
 
         </LinearLayout>
     </android.support.design.widget.TextInputLayout>

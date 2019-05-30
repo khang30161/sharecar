@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -30,49 +31,40 @@ import io.realm.Realm;
 public class RentCar extends AppCompatActivity {
 
 
-    Button mXemay, mOto;
+
     List <RentManagers> rentManagers=new ArrayList<>();
     private RecyclerView recyclerView;
     private RentCarAdapter rentCarAdapter;
-
     DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rent_car);
+        FloatingActionButton floatingActionButton = findViewById(R.id.fab);
         databaseReference=FirebaseDatabase.getInstance().getReference("image");
 
 
         recyclerView=findViewById(R.id.rv_rentcar);
         recyclerView.setHasFixedSize(true);
 
-         mOto = (Button) findViewById(R.id.oto);
-        mXemay = (Button) findViewById(R.id.xemay);
 
-        mXemay.setOnClickListener(new View.OnClickListener() {
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadFragment(new XemayFragment());
-            }
-        });
-// perform setOnClickListener event on Second Button
-        mOto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-// load Second Fragment
-                loadFragment(new OtoFragment());
+                Intent  intent=new Intent(RentCar.this, RentCarFloat.class);
+                startActivity(intent);
             }
         });
 
-    }
+        }
 
     @Override
     protected void onStart() {
         super.onStart();
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull final DataSnapshot dataSnapshot) {
             for (DataSnapshot rentSnapshot :dataSnapshot.getChildren()) {
             RentManagers list=rentSnapshot.getValue(RentManagers.class);
             RentManagers rentManager=new RentManagers();
@@ -89,7 +81,23 @@ public class RentCar extends AppCompatActivity {
             rentManager.setUrl(urlim);
             rentManagers.add(rentManager);
             }
-                rentCarAdapter = new RentCarAdapter(rentManagers, getApplicationContext());
+                rentCarAdapter = new RentCarAdapter(this, rentManagers, getApplicationContext(), new RentCarAdapter.Action() {
+                    @Override
+                    public void onClickItem(RentManagers manager, int position) {
+                      Intent intent=new Intent(RentCar.this, SelectItem.class);
+                        RentManagers rentManager=new RentManagers();
+
+                        intent.putExtra("startdateee", rentManager.getStartdate());
+                      startActivity(intent);
+
+
+                    }
+
+                    @Override
+                    public void onLongClickItem(RentManagers manager, int position) {
+
+                    }
+                });
                 RecyclerView.LayoutManager layoutmanager = new LinearLayoutManager(RentCar.this);
                 recyclerView.setLayoutManager(layoutmanager);
                 recyclerView.setItemAnimator( new DefaultItemAnimator());
@@ -103,19 +111,5 @@ public class RentCar extends AppCompatActivity {
         });
     }
 
-
-
-
-
-
-    private void loadFragment(Fragment fragment) {
-        //switching fragment
-        if (fragment != null) {
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.frameLayout, fragment)
-                    .commit();
-        }
-    }
 }
 

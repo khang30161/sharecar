@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -24,11 +25,11 @@ public class RentCarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
 
 
-    public RentCarAdapter(List<RentManagers> rentManagers, Context context) {
+    public RentCarAdapter(ValueEventListener valueEventListener, List<RentManagers> rentManagers, Context context, Action action) {
         this.rentManagers=  rentManagers;
         this.context=  context;
-        this.action=action;
-        this.resource=resource;
+        this.action= action;
+
 
     }
 
@@ -49,7 +50,7 @@ public class RentCarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, final int position) {
         if (rentManagers.get(position) == null) {
             return;
         }
@@ -65,6 +66,13 @@ public class RentCarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 .load(rentManagers.get(position).getUrl())
 
                 .into(holder.mPic);
+        holder.mLine.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (action != null)
+                    action.onClickItem(rentManagers.get(position), position);
+            }
+        });
     }
 
     @Override
@@ -76,6 +84,7 @@ public class RentCarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public class Viewholder extends RecyclerView.ViewHolder{
         private TextView mLocation, mPrice, mEndTime, mStartTime;
         ImageView mPic;
+        LinearLayout mLine;
 
         public Viewholder(View view) {
             super(view);
@@ -84,6 +93,7 @@ public class RentCarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             mPrice=view.findViewById(R.id.price_adapter);
             mStartTime=view.findViewById(R.id.starttime_adapter);
             mPic=view.findViewById(R.id.iv_adapter);
+            mLine=view.findViewById(R.id.line);
 
         }
     }
