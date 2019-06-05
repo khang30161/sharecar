@@ -23,7 +23,6 @@ public class DriverLoginActivity extends AppCompatActivity {
     private Button mLogin;
     private TextView mRegistration;
     private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener firebaseAuthListener;
 
 
     @Override
@@ -31,18 +30,6 @@ public class DriverLoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver_login);
         mAuth=FirebaseAuth.getInstance();
-        firebaseAuthListener=new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user =FirebaseAuth.getInstance().getCurrentUser();
-                if (user!=null){
-                    Intent intent=new Intent(DriverLoginActivity.this, MainActivity.class);
-                    startActivity(intent);
-                   finish();
-                    return;
-                }
-            }
-        };
 
 
         mEmail=findViewById(R.id.email);
@@ -60,6 +47,8 @@ public class DriverLoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(!task.isSuccessful()){
                             Toast.makeText(DriverLoginActivity.this, "Sign in error", Toast.LENGTH_SHORT).show();
+                        }else{
+
                         }
                     }
                 });
@@ -67,18 +56,5 @@ public class DriverLoginActivity extends AppCompatActivity {
         });
 
 
-    }
-
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        mAuth.addAuthStateListener(firebaseAuthListener);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        mAuth.removeAuthStateListener(firebaseAuthListener);
     }
 }

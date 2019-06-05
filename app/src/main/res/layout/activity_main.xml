@@ -9,80 +9,6 @@
     tools:context=".MainActivity">
 
 
-    <android.support.v7.widget.SearchView
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:queryHint="Tìm kiếm gì đó tại đây?"
-        android:background="@android:color/holo_green_light">.
-
-    </android.support.v7.widget.SearchView>
-    <LinearLayout
-        android:layout_marginTop="100dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Khám phá danh mục"
-            android:layout_marginLeft="20dp"
-            android:textColor="@color/colorPrimaryDark"
-            android:theme="@style/CardView"
-            />
-        <android.support.design.widget.TextInputLayout
-            android:layout_marginVertical="20dp"
-            android:layout_height="match_parent"
-            android:layout_width="match_parent"
-            android:background="@color/colorAccent">
-            <TextView
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Bạn muốn đi chung xe?"
-                android:textStyle="italic"
-                android:fontFamily="@string/common_google_play_services_enable_button"
-                android:textColor="@android:color/holo_green_light"  />
-            <ImageButton
-
-            android:id="@+id/main_act_sharecar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:adjustViewBounds="true"
-
-            android:scaleType="fitCenter"
-            android:src="@drawable/share" />
-        </android.support.design.widget.TextInputLayout>
-
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorAccent">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Bạn đang muốn thuê xe?"
-                android:textStyle="italic"
-                android:fontFamily="@string/common_google_play_services_enable_button"
-                android:textColor="@android:color/holo_green_light"/>                />
-        <ImageButton
-            android:id="@+id/main_act_rentcar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-
-            android:adjustViewBounds="true"
-
-            android:scaleType="fitCenter"
-            android:src="@drawable/thue" />
-        </android.support.design.widget.TextInputLayout>
-
-    </LinearLayout>
     <FrameLayout
         android:id="@+id/frame_container"
         android:layout_width="match_parent"
@@ -93,10 +19,10 @@
         android:layout_alignParentBottom="true"
         android:id="@+id/nav_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_marginStart="0dp"
         android:layout_marginEnd="0dp"
-        android:background="?android:attr/windowBackground"
+        android:background="@drawable/yellow"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

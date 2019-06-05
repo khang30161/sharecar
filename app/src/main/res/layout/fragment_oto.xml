@@ -6,14 +6,13 @@
     android:adjustViewBounds="true"
     android:orientation="vertical"
     android:scaleType="fitCenter"
-
+    style="@style/CardView.Dark"
     tools:context=".OtoFragment">
 
     <android.support.design.widget.TextInputLayout
+        android:layout_marginTop="15dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        android:background="@color/colorPrimary">
+        android:layout_height="wrap_content">
 
 
         <LinearLayout
@@ -24,15 +23,21 @@
 
 
             <Button
+                android:layout_marginVertical="15dp"
+                android:background="@color/common_google_signin_btn_text_dark_focused"
                 android:id="@+id/need_to_rent_car"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/common_google_signin_btn_text_dark"
                 android:text="Tôi cần thuê Ô tô"
 
                 />
 
 
             <Button
+                android:layout_marginVertical="15dp"
+                android:background="@color/common_google_signin_btn_text_dark_focused"
+                android:textColor="@color/cardview_light_background"
                 android:id="@+id/want_to_rent_car"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

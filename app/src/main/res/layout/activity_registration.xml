@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".Registration"
     android:layout_gravity="center"
+    android:background="@drawable/yellow"
     android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
@@ -135,9 +136,10 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Register!!"
-            android:background="@color/colorPrimary"
+            android:background="@color/common_google_signin_btn_text_dark_focused"
             android:layout_marginTop="40dp"
-            android:textColor="@android:color/background_dark"/>
+
+            android:textColor="@color/cardview_light_background"/>
 
     </LinearLayout>
 

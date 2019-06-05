@@ -17,10 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:scaleType="centerCrop"
-
-            android:src="@drawable/nav_menu_header_bg"
-            app:srcCompat="@drawable/nav_menu_header_bg" />
+            android:scaleType="centerCrop" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             xmlns:app="http://schemas.android.com/apk/res-auto"

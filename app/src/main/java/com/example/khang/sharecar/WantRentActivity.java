@@ -53,7 +53,7 @@ public class WantRentActivity extends AppCompatActivity {
     StorageReference storageReference;
 
     TextView mLocation,  mStartdate, mEnddate;
-    EditText mPrice;
+    EditText mPrice, mIntro;
     Button finish;
     FirebaseAnalytics mFirebaseAnalytics;
     DatabaseReference databaseReference;
@@ -63,7 +63,7 @@ public class WantRentActivity extends AppCompatActivity {
     ImageView mPictureRent;
     Button mAddPic;
     public static String FB_STORAGE_PATH="image/";
-    public static String FB_DATABASE_PATH="image";
+    public static String FB_DATABASE_PATH="post";
 
 
 
@@ -79,6 +79,7 @@ public class WantRentActivity extends AppCompatActivity {
         mEnddate=findViewById(R.id.endday);
         mStartdate=findViewById(R.id.startday);
         mPrice=findViewById(R.id.price);
+        mIntro=findViewById(R.id.et_intro);
         finish=findViewById(R.id.want_rent_finish_button);
         mPictureRent=findViewById(R.id.add_pic_rent);
         mAddPic=findViewById(R.id.btn_add_pic);
@@ -88,9 +89,6 @@ public class WantRentActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 loadImage();
-                Intent intent=new Intent(WantRentActivity.this, RentCar.class);
-                startActivity(intent);
-                finish();
 
 
 
@@ -157,6 +155,7 @@ public class WantRentActivity extends AppCompatActivity {
                                     String enddate=mEnddate.getText().toString();
                                     String startdate=mStartdate.getText().toString();
                                     String price=mPrice.getText().toString();
+                                    String intro=mIntro.getText().toString();
                                     String abc =taskResult.toString();
                               if(!TextUtils.isEmpty(location)&& !TextUtils.isEmpty(startdate)){
                                         String id=databaseReference.push().getKey();
@@ -165,7 +164,7 @@ public class WantRentActivity extends AppCompatActivity {
                                         rentManager.setStartdate(startdate);
                                         rentManager.setEnddate(enddate);
                                         rentManager.setPrice(price);
-
+                                        rentManager.setIntro(intro);
                                        rentManager.setUrl(abc);
                                         databaseReference.child(id).setValue(rentManager);
                                         mLocation.setText("");
@@ -179,10 +178,12 @@ public class WantRentActivity extends AppCompatActivity {
 
                             progressDialog.dismiss();
 
-                            Toast.makeText(WantRentActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(WantRentActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
 
 
-
+                        Intent intent=new Intent(WantRentActivity.this, RentCar.class);
+                        startActivity(intent);
+                        finish();
 
                         }
                     }});
@@ -295,7 +296,7 @@ public class WantRentActivity extends AppCompatActivity {
     }
 
 
-    private class MyProcessEvent implements
+    class MyProcessEvent implements
             AdapterView.OnItemSelectedListener
     {
         //Khi có chọn lựa thì vào hàm này

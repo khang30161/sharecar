@@ -5,7 +5,9 @@ import android.widget.ImageView;
 
 import com.google.firebase.storage.UploadTask;
 
-public class RentManagers  {
+import java.io.Serializable;
+
+public class RentManagers implements Serializable {
     private String id;
     private String startdate;
 
@@ -14,6 +16,15 @@ public class RentManagers  {
     private String price;
     private ImageView picture;
     private String url;
+    private String intro;
+
+    public String getIntro() {
+        return intro;
+    }
+
+    public void setIntro(String intro) {
+        this.intro = intro;
+    }
 
     public String getUrl() {
         return url;

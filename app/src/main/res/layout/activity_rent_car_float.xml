@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/yellow"
     tools:context=".RentCarFloat">
 
     <android.support.design.widget.TextInputLayout
@@ -26,11 +27,11 @@
                 android:id="@+id/xemay"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/button_color"
+                android:background="@color/common_google_signin_btn_text_dark_focused"
                 android:text="Xe Máy" />
 
             <Button
-                android:background="@drawable/button_color"
+                android:background="@color/common_google_signin_btn_text_dark_focused"
                 android:id="@+id/oto"
                 android:textColor="@android:color/white"
 

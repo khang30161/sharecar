@@ -5,36 +5,30 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:layout_marginVertical="10dp"
     tools:context=".RentCar">
-    <android.support.v7.widget.SearchView
-        android:id="@+id/line1"
-        android:layout_marginLeft="5dp"
+    <ImageView
+        android:id="@+id/logoo"
         android:layout_marginTop="10dp"
-        android:layout_marginRight="5dp"
-        android:layout_width="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        app:queryHint="Tìm kiếm gì đó tại đây?"
-        android:background="@android:color/white">
+        android:src="@drawable/logo1"/>
 
-    </android.support.v7.widget.SearchView>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginTop="60dp"
-        android:background="@android:color/holo_green_light"/>
+
     <LinearLayout
-        android:layout_marginTop="15dp"
+        android:background="@color/common_google_signin_btn_text_dark_focused"
+        android:layout_marginTop="20dp"
         android:id="@+id/line2"
-        android:layout_below="@+id/line1"
+        android:layout_below="@+id/logoo"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:orientation="horizontal">
         <TextView
-            android:background="@color/cardview_light_background"
-            android:textColor="@color/colorPrimaryDark"
+            android:id="@+id/tv_local"
+            android:layout_marginLeft="15dp"
+            android:textColor="@color/cardview_light_background"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:text="Location"/>
         <Spinner
 
@@ -43,84 +37,71 @@
             android:id="@+id/spinner">
         </Spinner>
     </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginTop="100dp"
-            android:background="@android:color/holo_green_light"/>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginTop="110dp"
-        android:background="@android:color/holo_green_light"/>
+
+
 
     <LinearLayout
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:id="@+id/line4"
         android:layout_below="@+id/line2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        android:background="@color/common_google_signin_btn_text_dark_focused"
         android:orientation="horizontal">
         <Button
+            android:id="@+id/btn_pickup"
             android:textColor="@color/cardview_light_background"
-            android:background="@color/colorPrimary"
-            android:layout_marginHorizontal="5dp"
+            android:background="@color/common_google_signin_btn_text_dark_focused"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Pickup"/>
         <TextView
+            android:id="@+id/tv_pickup"
+            android:textColor="@color/cardview_light_background"
             android:layout_marginHorizontal="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="mm/dd/yyyy"/>
         <Button
+            android:id="@+id/btn_refund"
             android:textColor="@color/cardview_light_background"
-            android:background="@color/colorPrimary"
-            android:layout_marginHorizontal="5dp"
+            android:background="@color/common_google_signin_btn_text_dark_focused"
+            android:layout_marginHorizontal="15dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Refund"/>
         <TextView
+            android:id="@+id/tv_refund"
+            android:textColor="@color/cardview_light_background"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="mm/dd/yyyy"/>
     </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginTop="163dp"
-        android:background="@android:color/holo_green_light"/>
 
-    <View
-        android:layout_width="200dp"
-        android:layout_height="2dp"
-        android:layout_marginTop="175dp"
-        android:background="@android:color/holo_green_light"/>
     <LinearLayout
-        android:layout_marginTop="20dp"
+        android:background="@color/common_google_signin_btn_text_dark_focused"
+        android:layout_marginTop="10dp"
         android:id="@+id/line5"
         android:layout_below="@+id/line4"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:orientation="horizontal">
         <TextView
+
+            android:layout_marginLeft="15dp"
             android:text="Price"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/cardview_light_background"
-            android:textColor="@color/colorPrimaryDark"/>
+            android:layout_height="35dp"
+            android:textColor="@color/cardview_light_background"/>
         <TextView
+            android:layout_marginLeft="10dp"
             android:layout_marginHorizontal="20dp"
+            android:textColor="@color/cardview_light_background"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Giá của sản phẩm!"/>
     </LinearLayout>
-    <View
-        android:layout_width="200dp"
-        android:layout_height="2dp"
-        android:layout_marginTop="206dp"
-        android:background="@android:color/holo_green_light"/>
+
 
     <TextView
         android:id="@+id/line3"

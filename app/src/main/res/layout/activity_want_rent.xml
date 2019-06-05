@@ -4,12 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_marginVertical="20dp"
+    android:background="@drawable/yellow"
     tools:context=".WantRentActivity">
+
     <TextView
+        android:layout_marginTop="25dp"
         android:id="@+id/xe_cho_thue"
         android:layout_width="match_parent"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:layout_marginLeft="10dp"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -18,16 +20,18 @@
     <android.support.design.widget.TextInputLayout
         android:layout_marginTop="20dp"
         android:id="@+id/line1"
+        android:layout_below="@+id/xe_cho_thue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary">
+        android:background="@color/common_google_signin_btn_text_dark_focused">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Location:"
-            android:textColor="@color/common_google_signin_btn_text_dark_pressed"
+            android:textColor="@color/cardview_light_background"
             android:layout_marginLeft="10dp"/>
         <TextView
+            android:textColor="@color/cardview_light_background"
             android:id="@+id/selection"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -42,9 +46,10 @@
 
     </android.support.design.widget.TextInputLayout>
     <LinearLayout
-
-        android:background="@color/colorPrimary"
-        android:layout_marginTop="100dp"
+        android:id="@+id/line2"
+        android:layout_below="@+id/line1"
+        android:background="@color/common_google_signin_btn_text_dark_focused"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -71,6 +76,7 @@
 
         </LinearLayout>
         <LinearLayout
+            android:background="@color/common_google_signin_btn_text_dark_focused"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -90,12 +96,13 @@
 
     </LinearLayout>
     <LinearLayout
-        android:layout_marginTop="220dp"
+        android:layout_below="@+id/line2"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginLeft="0dp"
-        android:background="@color/colorPrimary">
+        android:background="@color/common_google_signin_btn_text_dark_focused">
 
         <EditText
             android:layout_marginLeft="10dp"
@@ -108,34 +115,50 @@
             android:layout_marginHorizontal="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/cardview_light_background"
             android:text="đồng"/>
     </LinearLayout>
     <LinearLayout
-        android:layout_marginTop="350dp"
+        android:id="@+id/line5"
+        android:layout_marginTop="300dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginHorizontal="10dp">
+        android:orientation="horizontal">
         <Button
             android:id="@+id/btn_add_pic"
-            android:layout_marginHorizontal="10dp"
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/common_google_signin_btn_text_dark_focused"
             android:textColor="@color/cardview_light_background"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Thêm ảnh sản phẩm của bạn"/>
         <ImageView
+            android:layout_marginHorizontal="15dp"
             android:id="@+id/add_pic_rent"
             android:layout_width="150dp"
             android:layout_height="150dp" />
 
     </LinearLayout>
     <Button
+        android:layout_below="@+id/line5"
         android:textColorHint="@color/cardview_light_background"
-        android:layout_marginTop="300dp"
         android:id="@+id/want_rent_finish_button"
-        android:background="@color/colorPrimary"
+        android:background="@color/common_google_signin_btn_text_dark_focused"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Finish"/>
+    <TextView
+        android:id="@+id/tv_intro"
+        android:layout_below="@+id/want_rent_finish_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Giới thiệu về xe của bạn:"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"/>
+    <EditText
+        android:layout_below="@id/tv_intro"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_intro"
+        android:hint="Nhập vào đây...."/>
 </RelativeLayout>

@@ -19,18 +19,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mRent=findViewById(R.id.main_act_rentcar);
-        mRent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent =new Intent(MainActivity.this, DriverMapActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
 
-
-        //loading the default fragment
         loadFragment(new DashboardFragment());
 
         //getting bottom navigation view and attaching the listener

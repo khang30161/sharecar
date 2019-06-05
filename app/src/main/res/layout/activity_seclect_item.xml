@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:background="@drawable/yellow"
     tools:context=".SelectItem">
     <LinearLayout
         android:id="@+id/line0"
@@ -16,17 +16,16 @@
             android:layout_width="90dp"
             android:layout_height="20dp"
             android:text="Địa Điểm:"
-            android:textColor="@color/colorPrimaryDark"
-            android:background="@color/cardview_light_background"/>
+            android:textColor="@color/common_google_signin_btn_text_dark_focused" />
         <TextView
             android:id="@+id/location"
-            android:layout_marginHorizontal="20dp"
+            android:layout_marginLeft="45dp"
             android:layout_marginTop="20dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="25dp"
             android:hint="địa điểm"
             android:textColor="@color/cardview_light_background"
-            android:background="@color/colorPrimary"/>
+            android:background="@color/common_google_signin_btn_text_dark_focused"/>
     </LinearLayout>
 
     <LinearLayout
@@ -40,17 +39,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Ngày bắt đầu:"
-        android:textColor="@color/colorPrimaryDark"
-        android:background="@color/cardview_light_background"/>
+        android:textColor="@color/common_google_signin_btn_text_dark_focused" />
         <TextView
             android:id="@+id/startday"
-            android:layout_marginHorizontal="20dp"
+            android:layout_marginLeft="50dp"
             android:layout_marginTop="20dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="25dp"
             android:hint="ngày bắt đầu"
             android:textColor="@color/cardview_light_background"
-            android:background="@color/colorPrimary"/>
+            android:background="@color/common_google_signin_btn_text_dark_focused"/>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/line2"
@@ -63,17 +61,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Ngày kết thúc:"
-            android:textColor="@color/colorPrimaryDark"
-            android:background="@color/cardview_light_background"/>
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"/>
         <TextView
             android:id="@+id/endday"
-            android:layout_marginHorizontal="20dp"
+            android:layout_marginLeft="45dp"
             android:layout_marginTop="20dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="25dp"
             android:hint="ngày kết thúc"
             android:textColor="@color/cardview_light_background"
-            android:background="@color/colorPrimary"/>
+            android:background="@color/common_google_signin_btn_text_dark_focused"/>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/line3"
@@ -86,17 +83,16 @@
             android:layout_width="90dp"
             android:layout_height="20dp"
             android:text="Giá tiền:"
-            android:textColor="@color/colorPrimaryDark"
-            android:background="@color/cardview_light_background"/>
+            android:textColor="@color/common_google_signin_btn_text_dark_focused" />
         <TextView
             android:id="@+id/price"
-            android:layout_marginHorizontal="20dp"
+            android:layout_marginLeft="45dp"
             android:layout_marginTop="20dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="25dp"
             android:hint="Giá sản phẩm"
             android:textColor="@color/cardview_light_background"
-            android:background="@color/colorPrimary"/>
+            android:background="@color/common_google_signin_btn_text_dark_focused"/>
 
     </LinearLayout>
     <ImageView
@@ -107,13 +103,12 @@
         android:layout_height="200dp" />
     <TextView
         android:id="@+id/line5"
-        android:textColor="@color/colorPrimaryDark"
-        android:backgroundTint="@color/cardview_light_background"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:layout_marginTop="20dp"
         android:layout_below="@id/line4_iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Note:"/>
+        android:text="NOTE:"/>
     <TextView
         android:id="@+id/tv_note"
         android:layout_width="match_parent"
@@ -122,15 +117,14 @@
         android:hint="Ghi chú của chủ xe"/>
     <TextView
         android:id="@+id/line6"
-        android:textColor="@color/colorPrimaryDark"
-        android:background="@color/cardview_light_background"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:layout_marginTop="20dp"
         android:layout_below="@+id/tv_note"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Giới thiệu về xe"/>
     <TextView
-        android:id="@+id/line7"
+        android:id="@+id/tv_intro"
         android:layout_below="@+id/line6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -138,8 +132,8 @@
     <Button
         android:textColor="@color/cardview_light_background"
         android:layout_marginTop="20dp"
-        android:layout_below="@+id/line7"
-        android:background="@color/colorPrimaryDark"
+        android:layout_below="@+id/tv_intro"
+        android:background="@color/common_google_signin_btn_text_dark_focused"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/btn_select"

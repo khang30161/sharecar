@@ -31,6 +31,7 @@ public class XemayFragment extends Fragment {
                 Intent intent=new Intent(getActivity(), WantRentActivity.class);
                 startActivity(intent);
 
+
             }
         });
         mMuonthue.setOnClickListener(new View.OnClickListener() {

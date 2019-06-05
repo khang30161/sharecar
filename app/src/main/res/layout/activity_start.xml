@@ -4,14 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@drawable/yellow"
     tools:context=".StartActivity">
+
+    <ImageView
+        android:background="@color/common_google_signin_btn_text_dark_focused"
+        android:layout_marginTop="200dp"
+        android:layout_marginLeft="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo1"
+        />
 
     <TextView
         android:id="@+id/login"
         android:layout_marginTop="300dp"
         android:layout_marginLeft="100dp"
-        android:textColor="@color/cardview_light_background"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -26,7 +35,7 @@
         android:layout_marginLeft="135dp"
         android:layout_marginTop="35dp"
         android:text="Tạo một tài khoản?"
-        android:textColor="@color/cardview_light_background" />
+        android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
 
 </RelativeLayout>
