@@ -15,89 +15,129 @@
         android:orientation="vertical"
         android:paddingLeft="20dp"
         android:paddingRight="20dp" >
-        <android.support.design.widget.TextInputLayout
+        <LinearLayout
             android:id="@+id/signup_input_layout_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/common_google_signin_btn_text_dark_focused"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp">
             <EditText
                 android:id="@+id/signup_input_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
+                android:textColor="@color/cardview_light_background"
+                android:textColorHint="@color/cardview_light_background"
                 android:hint="Name"/>
-        </android.support.design.widget.TextInputLayout>
-        <android.support.design.widget.TextInputLayout
+        </LinearLayout>
+        <LinearLayout
             android:id="@+id/signup_input_layout_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/common_google_signin_btn_text_dark_focused"
+
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp">
             <EditText
+                android:textColor="@color/cardview_light_background"
+                android:textColorHint="@color/cardview_light_background"
                 android:id="@+id/signup_input_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textEmailAddress"
                 android:hint="Email" />
-        </android.support.design.widget.TextInputLayout>
-        <android.support.design.widget.TextInputLayout
+        </LinearLayout>
+        <LinearLayout
             android:id="@+id/signup_input_layout_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
+            android:background="@color/common_google_signin_btn_text_dark_focused"
+            android:orientation="horizontal"
             android:layout_marginTop="10dp">
             <EditText
                 android:id="@+id/signup_input_password"
-                android:layout_width="match_parent"
+                android:textColor="@color/cardview_light_background"
+                android:textColorHint="@color/cardview_light_background"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPassword"
                 android:hint="Password" />
-        </android.support.design.widget.TextInputLayout>
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/signup_input_layout_passwordconf"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp">
             <EditText
                 android:id="@+id/signup_input_passwordconf"
-                android:layout_width="match_parent"
+                android:textColor="@color/cardview_light_background"
+                android:textColorHint="@color/cardview_light_background"
+                android:layout_marginHorizontal="30dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Confirm Password"/>
-        </android.support.design.widget.TextInputLayout>
-        <android.support.design.widget.TextInputLayout
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/signup_input_layout_passwordconf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/common_google_signin_btn_text_dark_focused"
+            android:layout_marginTop="10dp">
+            <EditText
+                android:textColor="@color/cardview_light_background"
+                android:textColorHint="@color/cardview_light_background"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Local"/>
+            <EditText
+                android:textColorHint="@color/cardview_light_background"
+                android:textColor="@color/cardview_light_background"
+                android:layout_marginHorizontal="100dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Job"/>
+        </LinearLayout>
+        <LinearLayout
             android:id="@+id/signup_input_layout_age"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
+            android:background="@color/common_google_signin_btn_text_dark_focused"
+            android:orientation="horizontal"
             android:layout_marginTop="10dp">
             <EditText
+                android:textColorHint="@color/cardview_light_background"
                 android:id="@+id/signup_input_age"
-                android:layout_width="match_parent"
+                android:textColor="@color/cardview_light_background"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Age"/>
-        </android.support.design.widget.TextInputLayout>
-        <android.support.design.widget.TextInputLayout
+                android:hint="Birthday"/>
+            <EditText
+                android:textColorHint="@color/cardview_light_background"
+                android:id="@+id/signup_input_phone"
+                android:layout_marginHorizontal="70dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/cardview_light_background"
+                android:hint="Number Phone"/>
+        </LinearLayout>
+        <LinearLayout
             android:id="@+id/signup_input_layout_Phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
+            android:background="@color/common_google_signin_btn_text_dark_focused"
             android:layout_marginTop="10dp">
             <EditText
-                android:id="@+id/signup_input_phone"
+                android:layout_gravity="center"
+                android:textColorHint="@color/cardview_light_background"
+                android:id="@+id/fb_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="Number Phone"/>
-        </android.support.design.widget.TextInputLayout>
+                android:textColor="@color/cardview_light_background"
+                android:hint="Facebook Account!!"/>
+        </LinearLayout>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@color/common_google_signin_btn_text_dark_focused"
             android:paddingTop="20dp">
             <TextView
                 android:layout_alignParentLeft="true"
@@ -107,7 +147,7 @@
                 android:layout_height="wrap_content"
                 android:text="Gender"
                 android:textSize="20dp"
-                android:textColor="@android:color/holo_red_dark" />
+                android:textColor="@color/cardview_light_background" />
             <RadioGroup
 
                 android:id="@+id/gender_radio_group"
@@ -116,7 +156,7 @@
                 android:layout_toRightOf="@+id/gender_textview"
                 android:orientation="horizontal">
                 <RadioButton
-
+                    android:textColor="@color/cardview_light_background"
                     android:id="@+id/male_radio_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -127,6 +167,7 @@
                     android:id="@+id/female_radio_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/cardview_light_background"
                     android:text = "Female"
                     />
             </RadioGroup>

@@ -54,7 +54,9 @@ public class RentCarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         if (rentManagers.get(position) == null) {
             return;
         }
-
+        if (viewHolder instanceof HeaderRecycleviewRentcar) {
+            ((HeaderRecycleviewRentcar) viewHolder).mEndday.setText(rentManagers.get(position).getEnddate());
+        }
 
         Viewholder holder = (Viewholder) viewHolder;
 

@@ -34,14 +34,6 @@ public class RentManagers implements Serializable {
         this.url = url;
     }
 
-    public ImageView getPicture() {
-        return picture;
-    }
-
-    public void setPicture(ImageView picture) {
-        this.picture = picture;
-    }
-
     public String getStartdate() {
         return startdate;
     }

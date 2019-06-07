@@ -1,15 +1,16 @@
 package com.example.khang.sharecar;
 
-public class User {
+public class User extends Object {
     private String email;
     private String userId;
     private String username;
     private int age;
-    private int gender;
+    private String gender;
     private String numberphone;
 
 
-    public User(String email, String userId, String username, int age, int gender, String numberphone) {
+
+    public User() {
         this.email = email;
         this.userId = userId;
         this.username = username;
@@ -18,7 +19,7 @@ public class User {
         this.numberphone = numberphone;
     }
 
-    public String getUsername() {
+    public String getUsername(String username) {
         return username;
     }
 
@@ -34,11 +35,11 @@ public class User {
         this.age = age;
     }
 
-    public int getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(int gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
@@ -64,5 +65,9 @@ public class User {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public String getUsername() {
+        return username;
     }
 }

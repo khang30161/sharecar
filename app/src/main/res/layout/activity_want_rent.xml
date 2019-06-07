@@ -135,7 +135,7 @@
             android:layout_marginHorizontal="15dp"
             android:id="@+id/add_pic_rent"
             android:layout_width="150dp"
-            android:layout_height="150dp" />
+            android:layout_height="130dp" />
 
     </LinearLayout>
     <Button

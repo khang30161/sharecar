@@ -59,8 +59,7 @@ public class RentCar extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rent_car);
         FloatingActionButton floatingActionButton = findViewById(R.id.fab);
-        databaseReference=FirebaseDatabase.getInstance().getReference("image" +
-                "");
+        databaseReference=FirebaseDatabase.getInstance().getReference("post" + "");
         logo=findViewById(R.id.logoo);
         mBtnEndday=findViewById(R.id.btn_refund);
         mBtnStartday=findViewById(R.id.btn_pickup);

@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -19,7 +18,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Date;
-import java.util.Objects;
 
 public class Registration extends AppCompatActivity {
     private EditText mREmail, mRPassword, mUsername,mAge, mNumberphone ;
@@ -55,13 +53,13 @@ public class Registration extends AppCompatActivity {
                 final String username=mUsername.getText().toString();
                 final int age=Integer.parseInt(mAge.getText().toString());
                 final String number=mNumberphone.getText().toString();
-                final int gender=(mGenderMale.isChecked()==true)? 1 : 0;
+                final String gender=(mGenderMale.isChecked()==true)? "Male" : "Female";
                 mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(Registration.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             String user_id = mAuth.getCurrentUser().getUid();
-                            User user=new User(email,user_id, username,age, gender,number);
+                            User user=new User();
                             databaseReference.child(user_id).setValue(user);
 
                             Toast.makeText(Registration.this, "sign up is Successful", Toast.LENGTH_SHORT).show();
