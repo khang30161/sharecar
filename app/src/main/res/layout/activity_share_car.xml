@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/yellow"
+    tools:context=".ShareCar">
+
+    <Button
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="200dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/driver"
+        android:text="I'M A DRIVER"
+        android:textColor="@color/cardview_light_background"
+        android:background="@color/colorPrimary"/>
+    <Button
+        android:layout_marginRight="10dp"
+        android:id="@+id/customer"
+        android:layout_marginLeft="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="I'M A CUSTOMER"
+        android:layout_below="@id/driver"
+        android:textColor="@color/cardview_light_background"
+        android:layout_marginVertical="10dp"
+        android:background="@color/colorPrimary"/>
+
+</LinearLayout>

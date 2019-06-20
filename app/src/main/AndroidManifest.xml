@@ -18,7 +18,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".HeaderRecycleviewRentcar"></activity>
+        <activity android:name=".DriverShareCar"></activity>
+        <activity android:name=".HeaderRecycleviewRentcar" />
         <activity android:name=".RentCarFloat" />
         <activity android:name=".SelectItem" />
         <activity android:name=".NeedRentActivity" />
@@ -40,7 +41,7 @@
         <activity
             android:name=".DriverMapActivity"
             android:label="@string/title_activity_driver_map" />
-        <activity android:name=".DriverShareCar" />
+        <activity android:name=".ShareCar" />
         <activity android:name=".StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

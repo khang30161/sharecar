@@ -80,15 +80,16 @@
             android:background="@color/common_google_signin_btn_text_dark_focused"
             android:layout_marginTop="10dp">
             <EditText
+                android:id="@+id/local"
                 android:textColor="@color/cardview_light_background"
                 android:textColorHint="@color/cardview_light_background"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="Local"/>
             <EditText
+                android:id="@+id/job"
                 android:textColorHint="@color/cardview_light_background"
                 android:textColor="@color/cardview_light_background"
-                android:layout_marginHorizontal="100dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="Job"/>
@@ -110,7 +111,7 @@
             <EditText
                 android:textColorHint="@color/cardview_light_background"
                 android:id="@+id/signup_input_phone"
-                android:layout_marginHorizontal="70dp"
+                android:layout_marginHorizontal="50dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/cardview_light_background"

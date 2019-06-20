@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/yellow"
     tools:context=".WantRentActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <TextView
         android:layout_marginTop="25dp"
@@ -76,6 +79,7 @@
 
         </LinearLayout>
         <LinearLayout
+            android:layout_marginTop="20dp"
             android:background="@color/common_google_signin_btn_text_dark_focused"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -105,6 +109,7 @@
         android:background="@color/common_google_signin_btn_text_dark_focused">
 
         <EditText
+            android:textColor="@color/cardview_light_background"
             android:layout_marginLeft="10dp"
             android:textColorHint="@color/cardview_light_background"
             android:layout_width="wrap_content"
@@ -123,8 +128,9 @@
         android:layout_marginTop="300dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical">
         <Button
+            android:layout_marginTop="20dp"
             android:id="@+id/btn_add_pic"
             android:background="@color/common_google_signin_btn_text_dark_focused"
             android:textColor="@color/cardview_light_background"
@@ -132,14 +138,16 @@
             android:layout_height="wrap_content"
             android:text="Thêm ảnh sản phẩm của bạn"/>
         <ImageView
+            android:layout_marginTop="30dp"
             android:layout_marginHorizontal="15dp"
             android:id="@+id/add_pic_rent"
-            android:layout_width="150dp"
-            android:layout_height="130dp" />
+            android:layout_width="300dp"
+            android:layout_height="150dp" />
 
     </LinearLayout>
     <Button
-        android:layout_below="@+id/line5"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/et_intro"
         android:textColorHint="@color/cardview_light_background"
         android:id="@+id/want_rent_finish_button"
         android:background="@color/common_google_signin_btn_text_dark_focused"
@@ -148,17 +156,19 @@
         android:hint="Finish"/>
     <TextView
         android:id="@+id/tv_intro"
-        android:layout_below="@+id/want_rent_finish_button"
+        android:layout_below="@+id/line5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Giới thiệu về xe của bạn:"
         android:layout_marginTop="15dp"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"/>
     <EditText
+        android:background="@color/cardview_light_background"
         android:layout_below="@id/tv_intro"
         android:layout_marginTop="15dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:id="@+id/et_intro"
         android:hint="Nhập vào đây...."/>
-</RelativeLayout>
+    </RelativeLayout>
+</ScrollView>

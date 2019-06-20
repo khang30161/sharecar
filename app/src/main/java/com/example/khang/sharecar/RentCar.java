@@ -1,14 +1,11 @@
 package com.example.khang.sharecar;
 
-import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -20,59 +17,59 @@ import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import io.realm.Realm;
-
 
 public class RentCar extends AppCompatActivity {
-    String arr[]={
+    String arr[] = {
             "Hà Nội",
             "Thành Phố Hồ CHí Minh",
             "Hải Phòng",
-            "Cần Thơ","Đà Nẵng", "Bà rịa - Vũng Tàu", "Long An", "Quãng Ninh", "Đồng Nai", "Bình Dương"};
+            "Cần Thơ", "Đà Nẵng", "Bà rịa - Vũng Tàu", "Long An", "Quãng Ninh", "Đồng Nai", "Bình Dương"};
 
 
-    List <RentManagers> rentManagers=new ArrayList<>();
+    List<RentManagers> rentManagers = new ArrayList<>();
+    DatabaseReference databaseReference;
+    FirebaseDatabase firebase;
     private RecyclerView recyclerView;
     private RentCarAdapter rentCarAdapter;
     private TextView mLocation, mStartday, mEndday;
     private Button mBtnStartday, mBtnEndday;
     private Spinner spinner;
-    DatabaseReference databaseReference;
-    FirebaseDatabase firebase;
     private ImageView logo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rent_car);
-        FloatingActionButton floatingActionButton = findViewById(R.id.fab);
-        databaseReference=FirebaseDatabase.getInstance().getReference("post" + "");
-        logo=findViewById(R.id.logoo);
-        mBtnEndday=findViewById(R.id.btn_refund);
-        mBtnStartday=findViewById(R.id.btn_pickup);
-        mEndday=findViewById(R.id.tv_refund);
-        mStartday=findViewById(R.id.tv_pickup);
-        mLocation=findViewById(R.id.tv_local);
-        spinner=findViewById(R.id.spinner);
+
+
+        loadFragment(new AddProduct());
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("post" + "");
+        logo = findViewById(R.id.logoo);
+        mBtnEndday = findViewById(R.id.btn_refund);
+        mBtnStartday = findViewById(R.id.btn_pickup);
+        mEndday = findViewById(R.id.tv_refund);
+        mStartday = findViewById(R.id.tv_pickup);
+        mLocation = findViewById(R.id.tv_local);
+        spinner = findViewById(R.id.spinner);
         this.showDatePickerDialog();
         this.endDatePickerDialog();
         //Lấy đối tượng Spinner ra
 
         //Gán Data source (arr) vào Adapter
-        ArrayAdapter<String> adapter=new ArrayAdapter<String>
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>
                 (this, android.R.layout.simple_spinner_item, arr);
         //phải gọi lệnh này để hiển thị danh sách cho Spinner
         adapter.setDropDownViewResource
@@ -82,43 +79,28 @@ public class RentCar extends AppCompatActivity {
         //thiết lập sự kiện chọn phần tử cho Spinner
         spinner.setOnItemSelectedListener(new MyProcessEvent());
 
-        recyclerView=findViewById(R.id.rv_rentcar);
+        recyclerView = findViewById(R.id.rv_rentcar);
         recyclerView.setHasFixedSize(true);
 
-
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent  intent=new Intent(RentCar.this, RentCarFloat.class);
-                startActivity(intent);
-                finish();
-            }
-        });
         logo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(RentCar.this, MainActivity.class);
+                Intent intent = new Intent(RentCar.this, MainActivity.class);
                 startActivity(intent);
                 finish();
             }
         });
 
-        }
+    }
 
-    class MyProcessEvent implements
-            AdapterView.OnItemSelectedListener
-    {
-        //Khi có chọn lựa thì vào hàm này
-        public void onItemSelected(AdapterView<?> arg0,
-                                   View arg1,
-                                   int arg2,
-                                   long arg3) {
-            //arg2 là phần tử được chọn trong data source
-            mLocation.setText(arr[arg2]);
-        }
-        //Nếu không chọn gì cả
-        public void onNothingSelected(AdapterView<?> arg0) {
-            mLocation.setText("");
+    private void loadFragment(Fragment fragment) {
+        //switching fragment
+        if (fragment != null) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.frameLayout, fragment)
+                    .commit();
+
         }
     }
 
@@ -136,7 +118,7 @@ public class RentCar extends AppCompatActivity {
                         strBuf.append("");
                         strBuf.append(year);
                         strBuf.append("-");
-                        strBuf.append(month+1);
+                        strBuf.append(month + 1);
                         strBuf.append("-");
                         strBuf.append(dayOfMonth);
 
@@ -153,7 +135,6 @@ public class RentCar extends AppCompatActivity {
 
                 // Create the new DatePickerDialog instance.
                 DatePickerDialog datePickerDialog = new DatePickerDialog(RentCar.this, onDateSetListener, year, month, day);
-
 
 
                 // Popup the dialog.
@@ -174,7 +155,7 @@ public class RentCar extends AppCompatActivity {
                         strBuf.append(" ");
                         strBuf.append(year);
                         strBuf.append("-");
-                        strBuf.append(month+1);
+                        strBuf.append(month + 1);
                         strBuf.append("-");
                         strBuf.append(dayOfMonth);
 
@@ -192,7 +173,6 @@ public class RentCar extends AppCompatActivity {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(RentCar.this, onDateSetListener, year, month, day);
 
 
-
                 // Popup the dialog.
                 datePickerDialog.show();
             }
@@ -205,31 +185,21 @@ public class RentCar extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull final DataSnapshot dataSnapshot) {
-            for (DataSnapshot rentSnapshot :dataSnapshot.getChildren()) {
-            RentManagers list=rentSnapshot.getValue(RentManagers.class);
-                rentSnapshot.getKey();
-            RentManagers rentManager=new RentManagers();
-                assert list != null;
-                String location=list.getLocation();
-            String startday=list.getStartdate();
-            String enddate=list.getEnddate();
-            String price=list.getPrice();
-            String intro=list.getIntro();
-            String urlim=list.getUrl();
-            rentManager.setLocation(location);
-            rentManager.setStartdate(startday);
-            rentManager.setEnddate(enddate);
-            rentManager.setPrice(price);
-            rentManager.setUrl(urlim);
-            rentManager.setIntro(intro);
-            rentManagers.add(rentManager);
-            }
+                for (DataSnapshot rentSnapshot : dataSnapshot.getChildren()) {
+                    RentManagers rentManager = rentSnapshot.getValue(RentManagers.class);
+                    if (rentManager.getUserIdBook() != null) {
+                        continue;
+                    } else {
+                        rentManagers.add(rentManager);
+
+                    }
+                }
                 rentCarAdapter = new RentCarAdapter(this, rentManagers, getApplicationContext(), new RentCarAdapter.Action() {
                     @Override
                     public void onClickItem(RentManagers manager, int position) {
-                      Intent intent=new Intent(RentCar.this, SelectItem.class);
+                        Intent intent = new Intent(RentCar.this, SelectItem.class);
                         intent.putExtra("rentManager", manager);
-                      startActivity(intent);
+                        startActivity(intent);
                     }
 
                     @Override
@@ -239,8 +209,32 @@ public class RentCar extends AppCompatActivity {
                 });
                 RecyclerView.LayoutManager layoutmanager = new LinearLayoutManager(RentCar.this);
                 recyclerView.setLayoutManager(layoutmanager);
-                recyclerView.setItemAnimator( new DefaultItemAnimator());
+                recyclerView.setItemAnimator(new DefaultItemAnimator());
                 recyclerView.setAdapter(rentCarAdapter);
+                //queryByUserId();
+                queryFilter();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    private void queryByUserId() {
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        databaseReference.orderByChild("userId").equalTo(uid).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                rentManagers.clear();
+                for (DataSnapshot rentSnapshot : dataSnapshot.getChildren()) {
+                    RentManagers rentManager = rentSnapshot.getValue(RentManagers.class);
+                    rentManagers.add(rentManager);
+                }
+
+                rentCarAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -250,5 +244,47 @@ public class RentCar extends AppCompatActivity {
         });
     }
 
+    private void queryFilter() {
+        String local = mLocation.getText().toString();
+        final String start = mStartday.getText().toString();
+        final String end = mEndday.getText().toString();
+        databaseReference.orderByChild("location").equalTo(local)
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        rentManagers.clear();
+                        for (DataSnapshot rentSnapshot : dataSnapshot.getChildren()) {
+                            RentManagers rentManager = rentSnapshot.getValue(RentManagers.class);
+                            if (rentManager.getStartdate().equals(start)){
+                             rentManagers.add(rentManager);
+
+                        }
+
+                        rentCarAdapter.notifyDataSetChanged();
+                    }}
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+    }
+
+    class MyProcessEvent implements
+            AdapterView.OnItemSelectedListener {
+        //Khi có chọn lựa thì vào hàm này
+        public void onItemSelected(AdapterView<?> arg0,
+                                   View arg1,
+                                   int arg2,
+                                   long arg3) {
+            //arg2 là phần tử được chọn trong data source
+            mLocation.setText(arr[arg2]);
+        }
+
+        //Nếu không chọn gì cả
+        public void onNothingSelected(AdapterView<?> arg0) {
+            mLocation.setText("");
+        }
+    }
 }
 

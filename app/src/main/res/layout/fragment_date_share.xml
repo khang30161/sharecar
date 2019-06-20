@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragment.Date_share">
+
+    <LinearLayout
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/common_google_signin_btn_text_dark_focused"
+        android:id="@+id/line1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+   <Button
+       android:id="@+id/btn_starttime"
+       android:layout_marginTop="15dp"
+       android:layout_marginLeft="15dp"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="Ngày bắt đầu"/>
+   <TextView
+       android:id="@+id/tv_startdate"
+       android:textColor="@color/cardview_light_background"
+       android:layout_marginLeft="50dp"
+       android:layout_marginTop="15dp"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="yyyy/mm/dd"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:background="@color/common_google_signin_btn_text_dark_focused"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/line1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+     <Button
+         android:id="@+id/btn_starttimee"
+         style="@style/CardView.Dark"
+         android:layout_marginLeft="15dp"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text="Thời gian bắt đầu"/>
+      <TextView
+          android:id="@+id/tv_starttime"
+          android:textColor="@color/cardview_light_background"
+          android:layout_marginLeft="25dp"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="time"/>
+        </LinearLayout>
+     <LinearLayout
+         android:layout_marginHorizontal="30dp"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:orientation="vertical">
+         <Button
+             android:id="@+id/btn_endtime"
+             style="@style/CardView.Dark"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="Thời gian kết thúc"/>
+         <TextView
+             android:id="@+id/tv_endtime"
+             android:textColor="@color/cardview_light_background"
+             android:layout_marginHorizontal="30dp"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="time_end"/>
+     </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

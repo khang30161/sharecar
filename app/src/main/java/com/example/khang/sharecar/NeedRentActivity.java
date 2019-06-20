@@ -1,36 +1,110 @@
 package com.example.khang.sharecar;
 
 import android.app.DatePickerDialog;
-import android.support.v7.app.AppCompatActivity;
+import android.app.ProgressDialog;
+import android.content.ContentResolver;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import java.io.IOException;
 import java.util.Calendar;
 
 public class NeedRentActivity extends AppCompatActivity {
-    String arr[]={
+    public static String FB_STORAGE_PATH = "image/";
+    public static String FB_DATABASE_PATH = "post";
+    private final int PICK_IMAGE_REQUEST = 71;
+    String arr[] = {
             "Hà Nội",
             "Thành Phố Hồ CHí Minh",
             "Hải Phòng",
-            "Cần Thơ","Đà Nẵng", "Bà rịa - Vũng Tàu", "Long An", "Quãng Ninh", "Đồng Nai", "Bình Dương"};
+            "Cần Thơ", "Đà Nẵng", "Bà rịa - Vũng Tàu", "Long An", "Quãng Ninh", "Đồng Nai", "Bình Dương"};
     TextView selection;
+    FirebaseStorage storage;
+    StorageReference storageReference;
+    TextView mLocation, mStartdate, mEnddate, mStyle;
+    EditText mPrice, mIntro;
+    Button finish;
+    FirebaseAnalytics mFirebaseAnalytics;
+    DatabaseReference databaseReference;
+    ImageView mPictureRent;
+    Button mAddPic;
+    private Uri filePath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_need_rent);
+
+        databaseReference = FirebaseDatabase.getInstance().getReference(FB_DATABASE_PATH);
+
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        mLocation = findViewById(R.id.selection1);
+        mEnddate = findViewById(R.id.endday1);
+        mStartdate = findViewById(R.id.startday1);
+        mPrice = findViewById(R.id.price1);
+        mIntro=findViewById(R.id.et_intro);
+        finish = findViewById(R.id.want_rent_finish_button1);
+        mPictureRent = findViewById(R.id.add_pic_need1);
+        mAddPic = findViewById(R.id.btn_add_pic1);
+        mStyle=findViewById(R.id.xe_can_thue);
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference();
+        finish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadImage();
+
+
+            }
+
+        });
+        mAddPic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+            }
+
+        });
+
+
         this.showDatePickerDialog();
         this.endDatePickerDialog();
-        Spinner spin=findViewById(R.id.spinner1);
-        selection=findViewById(R.id.selection1);
+        //Lấy đối tượng Spinner ra
+        Spinner spin = findViewById(R.id.spinner1);
+        selection = findViewById(R.id.selection1);
         //Gán Data source (arr) vào Adapter
-        ArrayAdapter<String> adapter=new ArrayAdapter<String>
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>
                 (this, android.R.layout.simple_spinner_item, arr);
         //phải gọi lệnh này để hiển thị danh sách cho Spinner
         adapter.setDropDownViewResource
@@ -39,66 +113,79 @@ public class NeedRentActivity extends AppCompatActivity {
         spin.setAdapter(adapter);
         //thiết lập sự kiện chọn phần tử cho Spinner
         spin.setOnItemSelectedListener(new MyProcessEvent());
-
-    }
-    private class MyProcessEvent implements
-            AdapterView.OnItemSelectedListener
-    {
-        //Khi có chọn lựa thì vào hàm này
-        public void onItemSelected(AdapterView<?> arg0,
-                                   View arg1,
-                                   int arg2,
-                                   long arg3) {
-            //arg2 là phần tử được chọn trong data source
-            selection.setText(arr[arg2]);
-        }
-        //Nếu không chọn gì cả
-        public void onNothingSelected(AdapterView<?> arg0) {
-            selection.setText("");
-        }
     }
 
-    private void showDatePickerDialog() {
-        Button datePickerDialogButton = (Button)findViewById(R.id.datePickerDialogButton1);
-        datePickerDialogButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Create a new OnDateSetListener instance. This listener will be invoked when user click ok button in DatePickerDialog.
-                DatePickerDialog.OnDateSetListener onDateSetListener = new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
-                        StringBuffer strBuf = new StringBuffer();
-                        strBuf.append(" ");
-                        strBuf.append(year);
-                        strBuf.append("-");
-                        strBuf.append(month+1);
-                        strBuf.append("-");
-                        strBuf.append(dayOfMonth);
+    private void loadImage() {
+        if (filePath != null) {
+            final ProgressDialog progressDialog = new ProgressDialog(this);
+            progressDialog.setTitle("Uploading...");
+            progressDialog.show();
 
-                        TextView datePickerValueTextView = (TextView)findViewById(R.id.startday1);
-                        datePickerValueTextView.setText(strBuf.toString());
+            final StorageReference ref = storageReference.child(FB_STORAGE_PATH + System.currentTimeMillis() + "." + getImageExt(filePath));
+            UploadTask uploadTask = ref.putFile(filePath);
+
+            uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                @Override
+                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                    if (!task.isSuccessful()) {
+                        throw task.getException();
                     }
-                };
 
-                // Get current year, month and day.
-                Calendar now = Calendar.getInstance();
-                int year = now.get(java.util.Calendar.YEAR);
-                int month = now.get(java.util.Calendar.MONTH);
-                int day = now.get(java.util.Calendar.DAY_OF_MONTH);
+                    return ref.getDownloadUrl();
+                }
+            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                @Override
+                public void onComplete(@NonNull Task<Uri> task) {
+                    if (task.isSuccessful()) {
+                        Uri taskResult = task.getResult();
+                        String location = mLocation.getText().toString();
+                        String enddate = mEnddate.getText().toString();
+                        String startdate = mStartdate.getText().toString();
+                        String price = mPrice.getText().toString();
+                        String style =mStyle.getText().toString();
+                        String intro=mIntro.getText().toString();
+                        String abc = taskResult.toString();
+                        if (!TextUtils.isEmpty(location) && !TextUtils.isEmpty(startdate)) {
+                            String id = databaseReference.push().getKey();
+                            String Id= FirebaseAuth.getInstance().getCurrentUser().getUid();
+                            RentManagers rentManager = new RentManagers();
+                            rentManager.setLocation(location);
+                            rentManager.setStartdate(startdate);
+                            rentManager.setEnddate(enddate);
+                            rentManager.setPrice(price);
+                            rentManager.setUrl(abc);
+                            rentManager.setStyle(style);
+                            rentManager.setUserId(Id);
+                            rentManager.setIntro(intro);
+                            databaseReference.child(id).setValue(rentManager);
+                            mLocation.setText("");
+                            mEnddate.setText("");
+                            mStartdate.setText("");
+                            mPrice.setText("");
 
-                // Create the new DatePickerDialog instance.
-                DatePickerDialog datePickerDialog = new DatePickerDialog(NeedRentActivity.this, onDateSetListener, year, month, day);
+                        }
 
 
+                        progressDialog.dismiss();
 
-                // Popup the dialog.
-                datePickerDialog.show();
-            }
-        });
+                        Toast.makeText(NeedRentActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
+
+
+                        Intent intent = new Intent(NeedRentActivity.this, RentCar.class);
+                        startActivity(intent);
+                        finish();
+
+                    }
+                }
+            });
+
+
+        }
     }
+
 
     private void endDatePickerDialog() {
-        Button endDatePickerDialogButton = (Button)findViewById(R.id.endDatePickerDialogButton1);
+        Button endDatePickerDialogButton = (Button) findViewById(R.id.endDatePickerDialogButton1);
         endDatePickerDialogButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -110,11 +197,11 @@ public class NeedRentActivity extends AppCompatActivity {
                         strBuf.append("");
                         strBuf.append(year);
                         strBuf.append("-");
-                        strBuf.append(month+1);
+                        strBuf.append(month + 1);
                         strBuf.append("-");
                         strBuf.append(dayOfMonth);
 
-                        TextView datePickerValueTextView = (TextView)findViewById(R.id.endday1);
+                        TextView datePickerValueTextView = (TextView) findViewById(R.id.endday1);
                         datePickerValueTextView.setText(strBuf.toString());
                     }
                 };
@@ -129,10 +216,88 @@ public class NeedRentActivity extends AppCompatActivity {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(NeedRentActivity.this, onDateSetListener, year, month, day);
 
 
+                // Popup the dialog.
+                datePickerDialog.show();
+            }
+        });
+    }
+
+
+    private void showDatePickerDialog() {
+        Button datePickerDialogButton = (Button) findViewById(R.id.datePickerDialogButton1);
+        datePickerDialogButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Create a new OnDateSetListener instance. This listener will be invoked when user click ok button in DatePickerDialog.
+                DatePickerDialog.OnDateSetListener onDateSetListener = new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
+                        StringBuffer strBuf = new StringBuffer();
+                        strBuf.append(" ");
+                        strBuf.append(year);
+                        strBuf.append("-");
+                        strBuf.append(month + 1);
+                        strBuf.append("-");
+                        strBuf.append(dayOfMonth);
+
+                        TextView datePickerValueTextView = (TextView) findViewById(R.id.startday1);
+                        datePickerValueTextView.setText(strBuf.toString());
+                    }
+                };
+
+                // Get current year, month and day.
+                Calendar now = Calendar.getInstance();
+                int year = now.get(java.util.Calendar.YEAR);
+                int month = now.get(java.util.Calendar.MONTH);
+                int day = now.get(java.util.Calendar.DAY_OF_MONTH);
+
+                // Create the new DatePickerDialog instance.
+                DatePickerDialog datePickerDialog = new DatePickerDialog(NeedRentActivity.this, onDateSetListener, year, month, day);
+
 
                 // Popup the dialog.
                 datePickerDialog.show();
             }
         });
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
+                && data != null && data.getData() != null) {
+            filePath = data.getData();
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
+                mPictureRent.setImageBitmap(bitmap);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public String getImageExt(Uri uri) {
+        ContentResolver contentResolver = getContentResolver();
+        MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
+        return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
+    }
+
+
+    class MyProcessEvent implements
+            AdapterView.OnItemSelectedListener {
+        //Khi có chọn lựa thì vào hàm này
+        public void onItemSelected(AdapterView<?> arg0,
+                                   View arg1,
+                                   int arg2,
+                                   long arg3) {
+            //arg2 là phần tử được chọn trong data source
+            selection.setText(arr[arg2]);
+        }
+
+        //Nếu không chọn gì cả
+        public void onNothingSelected(AdapterView<?> arg0) {
+            selection.setText("");
+        }
     }
 }

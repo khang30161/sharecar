@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -19,11 +20,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
+import java.util.Map;
+
 
 public class InfoFragment extends Fragment {
     private TextView mName;
     private TextView mPhone;
-    private TextView mEmail;
+    private TextView mEmail, mLocal, mJob, mFacebook;
     private TextView mGender;
     private ImageView mEdit;
     private Button mLogout;
@@ -43,7 +47,9 @@ public class InfoFragment extends Fragment {
         mPhone = view.findViewById(R.id.mobileNumber);
         mEmail = view.findViewById(R.id.email);
         mGender = view.findViewById(R.id.gender);
-        mEdit=view.findViewById(R.id.edit);
+        mLocal=view.findViewById(R.id.tv_local);
+        mJob=view.findViewById(R.id.tv_job);
+        mFacebook=view.findViewById(R.id.facebookacc);
         mLogout=view.findViewById(R.id.logout);
         mLogout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,12 +80,16 @@ public class InfoFragment extends Fragment {
                 String phone=list.getNumberphone();
                 String username= list.getUsername();
                 String gender=list.getGender();
+                String facebook=list.getFacebook();
+                String local=list.getLocal();
+                String job=list.getJob();
                 mName.setText(username);
                 mPhone.setText(phone);
                 mGender.setText(gender);
                 mEmail.setText(email);
-
-
+                mLocal.setText(local);
+                mFacebook.setText(facebook);
+                mJob.setText(job);
             }
 
             @Override

@@ -9,8 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
-import java.util.Objects;
-
 
 public class DashboardFragment extends Fragment  {
     private ImageButton mShare, mRent;
@@ -31,7 +29,7 @@ public class DashboardFragment extends Fragment  {
         mShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getActivity(), DriverShareCar.class);
+                Intent intent=new Intent(getActivity(), ShareCar.class);
                 startActivity(intent);
 
 

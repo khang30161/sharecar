@@ -10,13 +10,23 @@ import java.io.Serializable;
 public class RentManagers implements Serializable {
     private String id;
     private String startdate;
-
+    private String style;
      private String enddate;
     private String location;
     private String price;
     private ImageView picture;
     private String url;
     private String intro;
+    private String UserId;
+    private String userIdBook;
+
+    public String getStyle() {
+        return style;
+    }
+
+    public void setStyle(String style) {
+        this.style = style;
+    }
 
     public String getIntro() {
         return intro;
@@ -24,6 +34,14 @@ public class RentManagers implements Serializable {
 
     public void setIntro(String intro) {
         this.intro = intro;
+    }
+
+    public String getUserId() {
+        return UserId;
+    }
+
+    public void setUserId(String userId) {
+        UserId = userId;
     }
 
     public String getUrl() {
@@ -72,6 +90,14 @@ public class RentManagers implements Serializable {
 
     public String getPrice() {
         return price;
+    }
+
+    public String getUserIdBook() {
+        return userIdBook;
+    }
+
+    public void setUserIdBook(String userIdBook) {
+        this.userIdBook = userIdBook;
     }
 
     public RentManagers() {

@@ -64,6 +64,7 @@ public class RentCarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         holder.mStartTime.setText(rentManagers.get(position).getStartdate());
         holder.mEndTime.setText(rentManagers.get(position).getEnddate());
         holder.mPrice.setText(rentManagers.get(position).getPrice());
+        holder.mStyle.setText(rentManagers.get(position).getStyle());
         Glide.with(context)
                 .load(rentManagers.get(position).getUrl())
 
@@ -83,8 +84,13 @@ public class RentCarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             return (rentManagers != null ? rentManagers.size() : 0);
         }
     }
+
+    public void setRentManagers(List<RentManagers> rentManagers) {
+        this.rentManagers = rentManagers;
+    }
+
     public class Viewholder extends RecyclerView.ViewHolder{
-        private TextView mLocation, mPrice, mEndTime, mStartTime;
+        private TextView mLocation, mPrice, mEndTime, mStartTime, mStyle;
         ImageView mPic;
         LinearLayout mLine;
 
@@ -96,6 +102,7 @@ public class RentCarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             mStartTime=view.findViewById(R.id.starttime_adapter);
             mPic=view.findViewById(R.id.iv_adapter);
             mLine=view.findViewById(R.id.line);
+            mStyle=view.findViewById(R.id.tv_info123);
 
         }
     }

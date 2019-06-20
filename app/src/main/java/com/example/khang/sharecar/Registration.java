@@ -20,7 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.Date;
 
 public class Registration extends AppCompatActivity {
-    private EditText mREmail, mRPassword, mUsername,mAge, mNumberphone ;
+    private EditText mREmail, mRPassword, mUsername,mAge, mNumberphone, mFacebook, mLocal, mJob ;
     private RadioButton mGenderMale;
     private Button mSignup;
     private FirebaseAuth mAuth;
@@ -37,6 +37,9 @@ public class Registration extends AppCompatActivity {
         mNumberphone=findViewById(R.id.signup_input_phone);
         mGenderMale=findViewById(R.id.male_radio_btn);
         mSignup = findViewById(R.id.btn_signup);
+        mLocal=findViewById(R.id.local);
+        mJob=findViewById(R.id.job);
+        mFacebook=findViewById(R.id.fb_info);
         (new Date()).getTime();
         new Date(1559564113903l);
         databaseReference=FirebaseDatabase.getInstance().getReference().child("Users").child("Drivers");
@@ -51,15 +54,19 @@ public class Registration extends AppCompatActivity {
                 final String email = mREmail.getText().toString();
                 final String password = mRPassword.getText().toString();
                 final String username=mUsername.getText().toString();
-                final int age=Integer.parseInt(mAge.getText().toString());
+                final String age=mAge.getText().toString();
                 final String number=mNumberphone.getText().toString();
+
                 final String gender=(mGenderMale.isChecked()==true)? "Male" : "Female";
+                final String local=mLocal.getText().toString();
+                final String job=mJob.getText().toString();
+                final String facebook=mFacebook.getText().toString();
                 mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(Registration.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             String user_id = mAuth.getCurrentUser().getUid();
-                            User user=new User();
+                            User user=new User(email,username,age,number,gender, local,job,facebook);
                             databaseReference.child(user_id).setValue(user);
 
                             Toast.makeText(Registration.this, "sign up is Successful", Toast.LENGTH_SHORT).show();
@@ -72,11 +79,10 @@ public class Registration extends AppCompatActivity {
                             Toast.makeText(Registration.this, "Sign Up Error", Toast.LENGTH_SHORT).show();
                         }
 
-                   }
+                    }
 
                 });
             };
-                   });
+        });
     }
 }
-

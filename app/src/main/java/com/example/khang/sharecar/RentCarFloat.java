@@ -19,6 +19,7 @@ public class RentCarFloat extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 loadFragment(new XemayFragment());
+
             }
         });
 // perform setOnClickListener event on Second Button
@@ -35,7 +36,7 @@ public class RentCarFloat extends AppCompatActivity {
         if (fragment != null) {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.frameLayout, fragment)
+                    .replace(R.id.frameLayout1, fragment)
                     .commit();
         }
     }
