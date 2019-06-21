@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import com.example.khang.sharecar.Fragment.Date_share;
 import com.example.khang.sharecar.Fragment.Local_Share;
 import com.example.khang.sharecar.Fragment.Lotrinh_share;
+import com.example.khang.sharecar.Fragment.Seat_share;
 import com.example.khang.sharecar.Fragment.StyleCar_Share;
 
 public class PageAdapterShare extends FragmentStatePagerAdapter {
@@ -28,6 +29,9 @@ public class PageAdapterShare extends FragmentStatePagerAdapter {
                 fragment=new StyleCar_Share();
                 break;
             case 3:
+                fragment=new Seat_share();
+                break;
+            case 4:
                 fragment=new Lotrinh_share();
                 break;
 
@@ -37,7 +41,7 @@ public class PageAdapterShare extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return 4;
+        return 5;
     }
 
     @Nullable

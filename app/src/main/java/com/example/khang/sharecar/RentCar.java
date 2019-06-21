@@ -193,6 +193,7 @@ public class RentCar extends AppCompatActivity {
                         rentManagers.add(rentManager);
 
                     }
+                    queryFilter();
                 }
                 rentCarAdapter = new RentCarAdapter(this, rentManagers, getApplicationContext(), new RentCarAdapter.Action() {
                     @Override
@@ -212,7 +213,7 @@ public class RentCar extends AppCompatActivity {
                 recyclerView.setItemAnimator(new DefaultItemAnimator());
                 recyclerView.setAdapter(rentCarAdapter);
                 //queryByUserId();
-                queryFilter();
+
             }
 
             @Override
@@ -255,10 +256,17 @@ public class RentCar extends AppCompatActivity {
                         rentManagers.clear();
                         for (DataSnapshot rentSnapshot : dataSnapshot.getChildren()) {
                             RentManagers rentManager = rentSnapshot.getValue(RentManagers.class);
-                            if (rentManager.getStartdate().equals(start)){
-                             rentManagers.add(rentManager);
+                            if(rentManager.getUserIdBook() !=null){
+                                continue;
+                            }else if(rentManager.getStartdate().equals(start) && start ==null){
+                                continue;
+                            }
+                            else if (rentManager.getStartdate().equals(start)){
+
+                                rentManagers.add(rentManager);
 
                         }
+
 
                         rentCarAdapter.notifyDataSetChanged();
                     }}

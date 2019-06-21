@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="50dp"
+    tools:context=".Fragment.Seat_share">
+    <TextView
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="SỐ VỊ TRÍ TRỐNG VÀ GHI CHÚ"
+        android:gravity="center"
+        android:background="@color/common_google_signin_btn_text_dark_focused"
+        android:textColor="@color/cardview_light_background"/>
+    <LinearLayout
+        android:id="@+id/line1"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/line"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Số vị trí trống:"/>
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/rb_min"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2-3 chỗ"/>
+            <RadioButton
+                android:id="@+id/rb_max"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:layout_marginLeft="50dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4-5 chỗ"/>
+        </RadioGroup>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_below="@+id/line1"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ghi chú: "/>
+        <EditText
+            android:id="@+id/et_note_share"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nói gì đó....."/>
+
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

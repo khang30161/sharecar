@@ -7,41 +7,85 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
+import android.widget.TextView;
 
 public class DriverShareCar extends AppCompatActivity {
     private ViewPager viewPager;
+    private Button mPre, mNext;
+    private EditText mNote;
+    private TextView mStartday, mStarttime, mEndtime;
     private TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver_share_car);
+        mNext=findViewById(R.id.next);
+        mPre=findViewById(R.id.pre);
+        mNote=findViewById(R.id.et_note_share);
+
         addControl();
+
     }
 
     private void addControl() {
         viewPager = (ViewPager) findViewById(R.id.view_pager);
-        tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+
         FragmentManager manager = getSupportFragmentManager();
         PageAdapterShare adapter = new PageAdapterShare(manager);
         viewPager.setAdapter(adapter);
-        tabLayout.setupWithViewPager(viewPager);
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        tabLayout.setTabsFromPagerAdapter(adapter);//deprecated
-        tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(viewPager));
+
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i1) {
 
 
-        View root = tabLayout.getChildAt(0);
-        if (root instanceof LinearLayout) {
-            ((LinearLayout) root).setShowDividers(LinearLayout.SHOW_DIVIDER_MIDDLE);
-            GradientDrawable drawable = new GradientDrawable();
-            drawable.setColor(getResources().getColor(R.color.common_google_signin_btn_text_dark_focused));
-            drawable.setSize(2, 1);
-            ((LinearLayout) root).setDividerPadding(10);
-            ((LinearLayout) root).setDividerDrawable(drawable);
-        }
+
+            }
+
+            @Override
+            public void onPageSelected(int i) {
+                int page = i;
+                switch (page) {
+                    case 0:
+                        mNext.setVisibility(View.VISIBLE);
+                        mPre.setVisibility(View.GONE);
+                        break;
+                    case 1:
+                        mNext.setVisibility(View.VISIBLE);
+                        mPre.setVisibility(View.VISIBLE);
+                        break;
+                    case 2:
+                        mNext.setVisibility(View.VISIBLE);
+                        mPre.setVisibility(View.VISIBLE);
+                        break;
+                    case 3:
+                        mNext.setVisibility(View.VISIBLE);
+                        mPre.setVisibility(View.VISIBLE);
+                        break;
+                    case 4:
+                        mNext.setVisibility(View.VISIBLE);
+                        mPre.setVisibility(View.VISIBLE);
+                        break;
+
+                }
+            }
+            @Override
+            public void onPageScrollStateChanged(int i) {
+
+            }
+        });
+
+    }
+    public void prev(View view){
+        viewPager.setCurrentItem(viewPager.getCurrentItem() -1,true);
+    }
+    public   void next(View view){
+        viewPager.setCurrentItem(viewPager.getCurrentItem() +1, true);
     }
 
 }

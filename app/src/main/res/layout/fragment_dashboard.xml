@@ -37,19 +37,21 @@
             />
         <android.support.design.widget.TextInputLayout
             android:layout_marginVertical="20dp"
-            android:layout_height="180dp"
+            android:layout_height="170dp"
             android:layout_width="match_parent"
-            android:background="@color/common_google_signin_btn_text_dark_focused">
+            android:background="@drawable/yellow">
             <TextView
                 android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Đi chung xe"
                 android:textStyle="italic"
                 android:fontFamily="@string/common_google_play_services_enable_button"
-                android:textColor="@color/cardview_light_background"  />
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"  />
             <ImageButton
+                android:background="@color/common_google_signin_btn_text_dark_focused"
                 android:id="@+id/main_act_sharecar1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -61,21 +63,23 @@
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:background="@color/common_google_signin_btn_text_dark_focused">
+            android:layout_height="145dp"
+            android:background="@drawable/yellow">
             <TextView
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="Thuê xe"
                 android:textStyle="italic"
                 android:fontFamily="@string/common_google_play_services_enable_button"
-                android:textColor="@color/cardview_light_background"/>                />
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"/>                />
             <ImageButton
                 android:id="@+id/main_act_rentcar1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-
+                android:background="@color/common_google_signin_btn_text_dark_focused"
                 android:adjustViewBounds="true"
 
                 android:scaleType="fitCenter"
