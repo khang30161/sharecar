@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,7 +38,7 @@ import com.google.firebase.storage.UploadTask;
 import java.io.IOException;
 import java.util.Calendar;
 
-public class WantRentActivity extends AppCompatActivity {
+public class RentBikeInformation extends AppCompatActivity {
     public static String FB_STORAGE_PATH = "image/";
     public static String FB_DATABASE_PATH = "post";
     private final int PICK_IMAGE_REQUEST = 71;
@@ -55,6 +56,7 @@ public class WantRentActivity extends AppCompatActivity {
     FirebaseAnalytics mFirebaseAnalytics;
     DatabaseReference databaseReference;
     ImageView mPictureRent;
+    RadioButton mWantRent;
     Button mAddPic;
     private Uri filePath;
 
@@ -73,8 +75,9 @@ public class WantRentActivity extends AppCompatActivity {
         mIntro = findViewById(R.id.et_intro);
         finish = findViewById(R.id.want_rent_finish_button);
         mPictureRent = findViewById(R.id.add_pic_rent);
+        mWantRent=findViewById(R.id.can_thue);
         mAddPic = findViewById(R.id.btn_add_pic);
-        mStyle=findViewById(R.id.xe_cho_thue);
+       // mStyle=findViewById(R.id.xe_cho_thue);
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
         finish.setOnClickListener(new View.OnClickListener() {
@@ -139,12 +142,13 @@ public class WantRentActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<Uri> task) {
                     if (task.isSuccessful()) {
                         Uri taskResult = task.getResult();
+                        String canthue=(mWantRent.isChecked()==true)? "Cần Thuê": "Cần Cho Thuê";
                         String location = mLocation.getText().toString();
                         String enddate = mEnddate.getText().toString();
                         String startdate = mStartdate.getText().toString();
                         String price = mPrice.getText().toString();
                         String intro = mIntro.getText().toString();
-                        String style =mStyle.getText().toString();
+                       // String style =mStyle.getText().toString();
                         String abc = taskResult.toString();
                         if (!TextUtils.isEmpty(location) && !TextUtils.isEmpty(startdate)) {
                             String id = databaseReference.push().getKey();
@@ -156,7 +160,7 @@ public class WantRentActivity extends AppCompatActivity {
                             rentManager.setPrice(price);
                             rentManager.setIntro(intro);
                             rentManager.setUrl(abc);
-                            rentManager.setStyle(style);
+                            rentManager.setStyle(canthue);
                             rentManager.setId(id);
                             rentManager.setUserId(userid);
                             databaseReference.child(id).setValue(rentManager);
@@ -170,10 +174,10 @@ public class WantRentActivity extends AppCompatActivity {
 
                         progressDialog.dismiss();
 
-                        Toast.makeText(WantRentActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RentBikeInformation.this, "Uploaded", Toast.LENGTH_SHORT).show();
 
 
-                        Intent intent = new Intent(WantRentActivity.this, RentCar.class);
+                        Intent intent = new Intent(RentBikeInformation.this, RentCar.class);
                         startActivity(intent);
                         finish();
 
@@ -215,7 +219,7 @@ public class WantRentActivity extends AppCompatActivity {
                 int day = now.get(java.util.Calendar.DAY_OF_MONTH);
 
                 // Create the new DatePickerDialog instance.
-                DatePickerDialog datePickerDialog = new DatePickerDialog(WantRentActivity.this, onDateSetListener, year, month, day);
+                DatePickerDialog datePickerDialog = new DatePickerDialog(RentBikeInformation.this, onDateSetListener, year, month, day);
 
 
                 // Popup the dialog.
@@ -254,7 +258,7 @@ public class WantRentActivity extends AppCompatActivity {
                 int day = now.get(java.util.Calendar.DAY_OF_MONTH);
 
                 // Create the new DatePickerDialog instance.
-                DatePickerDialog datePickerDialog = new DatePickerDialog(WantRentActivity.this, onDateSetListener, year, month, day);
+                DatePickerDialog datePickerDialog = new DatePickerDialog(RentBikeInformation.this, onDateSetListener, year, month, day);
 
 
                 // Popup the dialog.

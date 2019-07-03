@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".InfoFragment">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
     <RelativeLayout
         android:id="@+id/layout"
@@ -62,7 +65,7 @@
                 android:src="@android:drawable/ic_menu_edit" />
 
             <TextView
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="40dp"
                 android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -85,6 +88,11 @@
         android:layout_below="@+id/layout"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:text="Thông tin cá nhân:" />
+        <View
+            android:layout_marginTop="260dp"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/common_google_signin_btn_text_dark_focused"/>
 
     <RelativeLayout
 
@@ -92,8 +100,7 @@
         android:layout_height="500dp"
         android:layout_below="@+id/tv_info"
         android:layout_marginVertical="20dp"
-        android:background="@color/common_google_signin_btn_text_dark_focused"
-        android:elevation="4dp"
+         android:elevation="4dp"
         android:orientation="horizontal"
         android:paddingLeft="5dp"
         android:paddingTop="10dp"
@@ -106,21 +113,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-        <TextView
+            <ImageView
+                android:layout_marginLeft="5dp"
+                android:layout_width="70dp"
+                android:layout_height="30dp"
+                android:src="@drawable/work"/>
 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textView5"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:clickable="true"
-            android:text="WORK "
-            android:textColor="@color/cardview_light_background"
-            android:textStyle="bold"/>
             <TextView
                 android:id="@+id/tv_job"
                 android:layout_marginHorizontal="90dp"
-                android:textColor="@color/cardview_light_background"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -128,58 +130,48 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_marginLeft="8dp"
+            android:layout_marginTop="5dp"
             android:id="@+id/textView16"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView7"
             android:orientation="horizontal">
 
-            <TextView
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:clickable="true"
-                android:text="JOINED "
-                android:textColor="@color/cardview_light_background"
-                android:textStyle="bold" />
+           <ImageView
+               android:layout_width="70dp"
+               android:layout_height="30dp"
+               android:src="@drawable/key"/>
 
             <TextView
                 android:id="@+id/dob"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:layout_marginHorizontal="82dp"
+                android:layout_marginHorizontal="70dp"
                 android:layout_marginTop="8dp"
                 android:clickable="true"
                 android:text="01/01/2017"
-                android:textColor="@color/cardview_light_background" />
+                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
         </LinearLayout>
 
         <LinearLayout
+            android:layout_marginTop="5dp"
             android:id="@+id/textView15"
             android:layout_below="@+id/textView16"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
 
-        <TextView
 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            <ImageView
 
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="4dp"
-            android:clickable="true"
-            android:text="LOCATION"
-            android:textColor="@color/cardview_light_background"
-            android:textStyle="bold"
-            app:layout_constraintLeft_toLeftOf="parent" />
+                android:layout_width="70dp"
+                android:layout_height="31dp"
+                android:src="@drawable/ic_distance"/>
             <TextView
                 android:id="@+id/tv_local"
                 android:layout_marginHorizontal="68dp"
-                android:textColor="@color/cardview_light_background"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:layout_marginTop="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -187,57 +179,46 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_marginLeft="8dp"
+            android:layout_marginTop="5dp"
             android:id="@+id/textView11"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView15"
             android:orientation="horizontal">
 
-            <TextView
+            <ImageView
 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:clickable="true"
-                android:text="GENDER "
-                android:textColor="@color/cardview_light_background"
-                android:textStyle="bold" />
+                android:layout_width="70dp"
+                android:layout_height="30dp"
+                android:src="@drawable/gender"/>
 
             <TextView
                 android:id="@+id/gender"
-                android:layout_marginHorizontal="80dp"
+                android:layout_marginHorizontal="70dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="8dp"
                 android:clickable="true"
                 android:text="Male"
-                android:textColor="@color/cardview_light_background" />
+                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
         </LinearLayout>
 
         <LinearLayout
+            android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_below="@+id/textView11"
             android:id="@+id/tv_fb"
             android:layout_height="wrap_content">
-        <TextView
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-             android:clickable="true"
-            android:text="FACEBOOK "
-            android:textColor="@color/cardview_light_background"
-            android:textStyle="bold"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="30dp"
+            android:src="@drawable/fb"/>
             <TextView
                 android:id="@+id/facebookacc"
-                android:layout_marginHorizontal="60dp"
-                android:textColor="@color/cardview_light_background"
+                android:layout_marginHorizontal="70dp"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:layout_marginTop="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -257,47 +238,45 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
-            android:layout_marginLeft="8dp"
+            android:layout_marginTop="5dp"
             android:id="@+id/textView27"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_fb"
             android:orientation="horizontal">
 
-            <TextView
+            <ImageView
 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="70dp"
+                android:layout_height="30dp"
                 android:layout_marginTop="5dp"
-                android:clickable="true"
-                android:text="EMAIL "
-                android:textColor="@color/cardview_light_background"
+                android:src="@drawable/email"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="90dp"
+                android:layout_marginLeft="70dp"
                 android:layout_marginTop="0dp"
                 android:clickable="true"
                 android:text="xxx@gmail.com"
-                android:textColor="@color/cardview_light_background" />
+                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_marginLeft="8dp"
+            android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView27"
             android:orientation="horizontal">
 
-            <TextView
+            <ImageView
                 android:id="@+id/textView22"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="70dp"
+                android:layout_height="30dp"
                 android:layout_marginTop="5dp"
-                android:clickable="true"
+                android:src="@drawable/phone"
                 android:text="MOBILE PHONE"
                 android:textColor="@color/cardview_light_background"
                 android:textStyle="bold" />
@@ -306,28 +285,25 @@
                 android:id="@+id/mobileNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="32dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="0dp"
                 android:clickable="true"
                 android:text="Sđt"
-                android:textColor="@color/cardview_light_background" />
+                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
         </LinearLayout>
+        <View
+            android:layout_marginTop="275dp"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/common_google_signin_btn_text_dark_focused"/>
 
 
-        <TextView
-            android:id="@+id/education"
-            android:layout_width="wrap_content"
-            android:layout_height="14dp"
-            android:layout_margin="5dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:clickable="true"
-            android:text=""
-            app:layout_constraintLeft_toRightOf="@+id/textView5"
-            app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+
 
 
     </RelativeLayout>
+    </RelativeLayout>
 
 
-</RelativeLayout>
+</ScrollView>

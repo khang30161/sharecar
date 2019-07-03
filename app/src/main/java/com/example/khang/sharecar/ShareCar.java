@@ -19,7 +19,7 @@ public class ShareCar extends AppCompatActivity {
         mCustomer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(ShareCar.this, DriverMapActivity.class);
+                Intent intent=new Intent(ShareCar.this, ShareCarCustomer.class);
                 startActivity(intent);
                 finish();
             }
@@ -27,7 +27,7 @@ public class ShareCar extends AppCompatActivity {
         mDriver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(ShareCar.this, DriverShareCar.class);
+                Intent intent=new Intent(ShareCar.this, ShareCarDriverSumary.class);
                 startActivity(intent);
                 finish();
             }

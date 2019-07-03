@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <View
+        android:layout_marginTop="18dp"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/opaque_orange"/>
+    <LinearLayout
+        android:id="@+id/linexx"
+
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/iv_sh_cus"
+            android:layout_width="120dp"
+            android:layout_height="120dp" />
+        <LinearLayout
+            android:background="@color/common_google_signin_btn_text_light_disabled"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/tv_sh_cus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ngày đi"/>
+                <TextView
+                    android:id="@+id/tv_sh_pric_cus"
+                    android:layout_marginLeft="50dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Giá cả"/>
+                <TextView
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Đồng"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Từ "/>
+
+                <TextView
+                    android:id="@+id/tv_sh_starthour"
+                    android:layout_marginLeft="3dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="...." />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="h"/>
+                <TextView
+                    android:id="@+id/tv_sh_startminute"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="...."/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="phut"/>
+                <TextView
+                    android:layout_marginLeft="40dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Đến"/>
+                <TextView
+                    android:id="@+id/tv_sh_endhour"
+                    android:layout_marginLeft="3dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="...."/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="h"/>
+                <TextView
+                    android:id="@+id/tv_sh_endminute"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="...."/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="phut"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="25dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/tv_local_sh"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Địa điểm"/>
+                <TextView
+                    android:id="@+id/tv_seatempty_sh"
+                    android:layout_marginLeft="70dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3-4 người"/>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <View
+        android:layout_marginTop="135dp"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/opaque_orange"/>
+
+</RelativeLayout>

@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/driver"
-        android:text="I'M A DRIVER"
+        android:text="TÔI LÀ NGƯỜI LÁI XE"
         android:textColor="@color/cardview_light_background"
         android:background="@color/colorPrimary"/>
     <Button
@@ -24,7 +24,7 @@
         android:layout_marginLeft="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="I'M A CUSTOMER"
+        android:text="TÔI LÀ KHÁCH HÀNG"
         android:layout_below="@id/driver"
         android:textColor="@color/cardview_light_background"
         android:layout_marginVertical="10dp"

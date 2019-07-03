@@ -11,7 +11,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.Resource;
 import com.google.firebase.database.ValueEventListener;
 
@@ -33,6 +32,8 @@ public class RentCarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     }
 
+
+
     public interface Action {
         void onClickItem(RentManagers manager, int position);
 
@@ -53,9 +54,6 @@ public class RentCarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, final int position) {
         if (rentManagers.get(position) == null) {
             return;
-        }
-        if (viewHolder instanceof HeaderRecycleviewRentcar) {
-            ((HeaderRecycleviewRentcar) viewHolder).mEndday.setText(rentManagers.get(position).getEnddate());
         }
 
         Viewholder holder = (Viewholder) viewHolder;
@@ -89,7 +87,7 @@ public class RentCarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         this.rentManagers = rentManagers;
     }
 
-    public class Viewholder extends RecyclerView.ViewHolder{
+    public static class Viewholder extends RecyclerView.ViewHolder{
         private TextView mLocation, mPrice, mEndTime, mStartTime, mStyle;
         ImageView mPic;
         LinearLayout mLine;

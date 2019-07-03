@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SelectItemShareCustomer">
+
+    <RelativeLayout
+        android:background="@drawable/yellow"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/line1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="THÔNG TIN SẢN PHẨM:"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+
+        <LinearLayout
+            android:id="@+id/line2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/line1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/common_google_signin_btn_text_dark_focused"
+                android:text="Ngày đi:"
+                android:textColor="@color/cardview_light_background" />
+
+            <TextView
+                android:id="@+id/tv_ngay_bat_dau"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="yyyy/mm/dd"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/line3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/line2"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/common_google_signin_btn_text_dark_focused"
+                android:text="Bắt đầu"
+                android:textColor="@color/cardview_light_background" />
+
+            <TextView
+                android:id="@+id/tv_hour_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="..."
+                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="giời"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+
+            <TextView
+                android:id="@+id/tv_phut_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="..."
+                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Phút"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:background="@color/common_google_signin_btn_text_dark_focused"
+                android:text="Kết thúc"
+                android:textColor="@color/cardview_light_background" />
+
+            <TextView
+                android:id="@+id/tv_hour_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="..."
+                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="giờ"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+
+            <TextView
+                android:id="@+id/tv_phut_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="..."
+                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Phút"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/line4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/line3"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Id:"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+
+            <TextView
+                android:id="@+id/tv_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="......"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:text="Ngày đăng: "
+                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:id="@+id/line20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/line4">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/common_google_signin_btn_text_dark_focused"
+                android:text="Địa điểm"
+                android:textColor="@color/cardview_light_background" />
+
+            <TextView
+                android:layout_marginLeft="20dp"
+                android:text="............."
+                android:id="@+id/tv_diadiem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/line5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/line20"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/common_google_signin_btn_text_dark_focused"
+                android:text="Điểm khởi hành"
+                android:textColor="@color/cardview_light_background" />
+
+            <TextView
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:id="@+id/tv_startpoint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="Địa chỉ xuất phát" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/line6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/line5"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/common_google_signin_btn_text_dark_focused"
+                android:text="Điểm kết thúc"
+                android:textColor="@color/cardview_light_background" />
+
+            <TextView
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:id="@+id/tv_endpoint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="Điểm kết thúc" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/line7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/line6"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:id="@+id/tv_so_cho_ngoi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Số chõ ngồi"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+            <TextView
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chỗ"/>
+
+            <TextView
+                android:id="@+id/tv_loai_xe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:text="Loại xe"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+
+            <TextView
+                android:id="@+id/tv_dong_xe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dòng xe"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/line8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/line7"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/common_google_signin_btn_text_dark_focused"
+                android:text="Số ghế trống"
+                android:textColor="@color/cardview_light_background" />
+
+            <TextView
+                android:id="@+id/tv_so_ghe_trong"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="..."
+                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/line9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/line8"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/common_google_signin_btn_text_dark_focused"
+                android:text="Ghi chú:"
+                android:textColor="@color/cardview_light_background" />
+
+            <TextView
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:id="@+id/tv_noi_gi_go"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="nói gì đó..." />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/line10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/line9"
+            android:layout_marginTop="20dp"
+            android:background="@color/common_google_signin_btn_text_dark_focused"
+            android:gravity="center"
+            android:text="Hình ảnh"
+            android:textColor="@color/cardview_light_background" />
+
+        <LinearLayout
+            android:id="@+id/line11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/line10"
+            android:layout_marginTop="20dp">
+
+            <ImageView
+                android:id="@+id/iv_hinh_anh"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/line12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/line11"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/common_google_signin_btn_text_dark_focused"
+                android:text="Giá tiền: "
+                android:textColor="@color/cardview_light_background" />
+
+            <TextView
+                android:id="@+id/tv_gia_ca"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="giá cả"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_dat_hang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/line12"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@color/common_google_signin_btn_text_dark_focused"
+            android:gravity="center"
+            android:text="Đặt hàng"
+            android:textColor="@color/cardview_light_background" />
+    </RelativeLayout>
+
+
+</ScrollView>

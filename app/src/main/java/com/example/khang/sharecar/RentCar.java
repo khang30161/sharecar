@@ -4,7 +4,6 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,8 +14,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -44,17 +45,15 @@ public class RentCar extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RentCarAdapter rentCarAdapter;
     private TextView mLocation, mStartday, mEndday;
-    private Button mBtnStartday, mBtnEndday;
+    private Button mBtnStartday, mBtnEndday, mAddpro;
     private Spinner spinner;
     private ImageView logo;
+    private RadioButton mRent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rent_car);
-
-
-        loadFragment(new AddProduct());
 
         databaseReference = FirebaseDatabase.getInstance().getReference("post" + "");
         logo = findViewById(R.id.logoo);
@@ -63,7 +62,19 @@ public class RentCar extends AppCompatActivity {
         mEndday = findViewById(R.id.tv_refund);
         mStartday = findViewById(R.id.tv_pickup);
         mLocation = findViewById(R.id.tv_local);
+        mRent = findViewById(R.id.renttttt);
         spinner = findViewById(R.id.spinner);
+        mAddpro = findViewById(R.id.add_product);
+
+        mAddpro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RentCar.this, RentCarFloat.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
         this.showDatePickerDialog();
         this.endDatePickerDialog();
         //Lấy đối tượng Spinner ra
@@ -91,17 +102,6 @@ public class RentCar extends AppCompatActivity {
             }
         });
 
-    }
-
-    private void loadFragment(Fragment fragment) {
-        //switching fragment
-        if (fragment != null) {
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.frameLayout, fragment)
-                    .commit();
-
-        }
     }
 
     private void endDatePickerDialog() {
@@ -194,6 +194,7 @@ public class RentCar extends AppCompatActivity {
 
                     }
                     queryFilter();
+
                 }
                 rentCarAdapter = new RentCarAdapter(this, rentManagers, getApplicationContext(), new RentCarAdapter.Action() {
                     @Override
@@ -247,6 +248,7 @@ public class RentCar extends AppCompatActivity {
 
     private void queryFilter() {
         String local = mLocation.getText().toString();
+        final String phanquyen = (mRent.isChecked() == true) ? "Cần Cho Thuê" : "Cần Thuê";
         final String start = mStartday.getText().toString();
         final String end = mEndday.getText().toString();
         databaseReference.orderByChild("location").equalTo(local)
@@ -256,20 +258,23 @@ public class RentCar extends AppCompatActivity {
                         rentManagers.clear();
                         for (DataSnapshot rentSnapshot : dataSnapshot.getChildren()) {
                             RentManagers rentManager = rentSnapshot.getValue(RentManagers.class);
-                            if(rentManager.getUserIdBook() !=null){
+                            if (rentManager.getUserIdBook() != null) {
                                 continue;
-                            }else if(rentManager.getStartdate().equals(start) && start ==null){
+                            } else if (rentManager.getStartdate().equals(start) && start == null) {
                                 continue;
-                            }
-                            else if (rentManager.getStartdate().equals(start)){
-
+                            } else if (rentManager.getStartdate().equals(start) && rentManager.getEnddate().equals(end) && rentManager.getStyle().equals(phanquyen)) {
                                 rentManagers.add(rentManager);
+                            }
+
 
                         }
 
-
                         rentCarAdapter.notifyDataSetChanged();
-                    }}
+                        if (rentCarAdapter.getItemCount() == 0) {
+                            Toast.makeText(RentCar.this, "Giảm bớt điều kiện lọc hoặc đăng thông tin của bạn", Toast.LENGTH_LONG).show();
+
+                        }
+                    }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -277,6 +282,7 @@ public class RentCar extends AppCompatActivity {
                     }
                 });
     }
+
 
     class MyProcessEvent implements
             AdapterView.OnItemSelectedListener {

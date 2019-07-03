@@ -2,147 +2,178 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/yellow"
+    android:layout_height="match_parent"
     android:orientation="vertical"
+
     tools:context=".RentCar">
-    <ImageView
+
+    <Button
+        android:id="@+id/add_product"
+        style="@style/CardView.Dark"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginBottom="5dp"
         android:background="@color/common_google_signin_btn_text_dark_focused"
+        android:text="NHẬP SẢN PHẨM CỦA BẠN!!!"
+        android:textColor="@color/cardview_light_background" />
+
+    <ImageView
         android:id="@+id/logoo"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:src="@drawable/logo1"/>
-    <TextView
-        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
-        android:id="@+id/findd"
-        android:layout_below="@+id/logoo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Nhập thông tin tìm kiếm vào đây:"/>
-
-
-    <LinearLayout
         android:background="@color/common_google_signin_btn_text_dark_focused"
-        android:layout_marginTop="20dp"
-        android:id="@+id/line2"
-        android:layout_below="@+id/findd"
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nhập địa điểm:"
-            android:textColor="@color/cardview_light_background"
-            android:textColorHint="@color/cardview_light_background"/>
-        <TextView
-            android:id="@+id/tv_local"
-            android:layout_marginLeft="15dp"
-            android:textColor="@color/cardview_light_background"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:text="Location"/>
-        <Spinner
+        android:src="@drawable/logo1" />
 
+    <TextView
+        android:id="@+id/seach"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/logoo"
+        android:layout_marginTop="20dp"
+        android:text="NHẬP THÔNG TIN TÌM KIẾM TẠI ĐÂY:"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="119dp"
+        android:background="@color/common_google_signin_btn_text_dark_focused" />
+
+    <RelativeLayout
+        android:id="@+id/line1"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:layout_below="@+id/seach"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/yellow">
+
+
+        <LinearLayout
+            android:id="@+id/line2"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+
+            android:layout_marginTop="20dp"
+            android:background="@color/common_google_signin_btn_text_dark_focused"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nhập địa điểm:"
+                android:textColor="@color/cardview_light_background"
+                android:textColorHint="@color/cardview_light_background" />
+
+            <TextView
+                android:id="@+id/tv_local"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginLeft="15dp"
+                android:text="Location"
+                android:textColor="@color/cardview_light_background" />
+
+            <Spinner
+
+                android:id="@+id/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></Spinner>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/line4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/spinner">
-        </Spinner>
-    </LinearLayout>
-
-
-
-    <LinearLayout
-        android:layout_marginTop="10dp"
-        android:id="@+id/line4"
-        android:layout_below="@+id/line2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/common_google_signin_btn_text_dark_focused"
-        android:orientation="horizontal">
-        <Button
-            style="@style/CardView.Dark"
-            android:id="@+id/btn_pickup"
-            android:textColor="@color/cardview_light_background"
+            android:layout_below="@+id/line2"
+            android:layout_marginTop="10dp"
             android:background="@color/common_google_signin_btn_text_dark_focused"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ngày đi"/>
-        <TextView
-            android:id="@+id/tv_pickup"
-            android:textColor="@color/cardview_light_background"
-            android:layout_marginHorizontal="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="mm/dd/yyyy"/>
-        <Button
-            style="@style/CardView.Dark"
-            android:id="@+id/btn_refund"
-            android:textColor="@color/cardview_light_background"
-            android:background="@color/common_google_signin_btn_text_dark_focused"
-            android:layout_marginHorizontal="15dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ngày Hoàn trả"/>
-        <TextView
-            android:id="@+id/tv_refund"
-            android:textColor="@color/cardview_light_background"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="mm/dd/yyyy"/>
-    </LinearLayout>
+            android:orientation="horizontal">
 
-    <LinearLayout
-        android:background="@color/common_google_signin_btn_text_dark_focused"
-        android:layout_marginTop="10dp"
-        android:id="@+id/line5"
-        android:layout_below="@+id/line4"
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:orientation="horizontal">
-        <TextView
+            <Button
+                android:id="@+id/btn_pickup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/common_google_signin_btn_text_dark_focused"
+                android:text="Ngày đi"
+                android:textColor="@color/cardview_light_background" />
 
-            android:layout_marginLeft="15dp"
-            android:text="Giá sản phẩm:"
-            android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/tv_pickup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:text="mm/dd/yyyy"
+                android:textColor="@color/cardview_light_background" />
+
+            <Button
+                android:id="@+id/btn_refund"
+                style="@style/CardView.Dark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:background="@color/common_google_signin_btn_text_dark_focused"
+                android:text="Ngày Hoàn trả"
+                android:textColor="@color/cardview_light_background" />
+
+            <TextView
+                android:id="@+id/tv_refund"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="mm/dd/yyyy"
+                android:textColor="@color/cardview_light_background" />
+        </LinearLayout>
+
+        <RadioGroup
+
+            android:id="@+id/line5"
+            android:layout_width="match_parent"
             android:layout_height="35dp"
-            android:textColor="@color/cardview_light_background"/>
-        <TextView
-            android:layout_marginLeft="10dp"
-            android:layout_marginHorizontal="20dp"
-            android:textColor="@color/cardview_light_background"
+            android:layout_below="@+id/line4"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/renttttt"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginLeft="15dp"
+                android:text="Cần Cho Thuê"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+
+            <RadioButton
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="50dp"
+                android:layout_marginLeft="40dp"
+                android:text="Cần Thuê"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+        </RadioGroup>
+
+        <View
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Giá của sản phẩm!"/>
-    </LinearLayout>
+            android:layout_height="2dp"
+            android:layout_below="@+id/line5"
+            android:background="@color/common_google_signin_btn_text_dark_focused" />
 
 
-    <TextView
-        android:id="@+id/line3"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/line5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/colorPrimaryDark"/>
+    </RelativeLayout>
+
     <android.support.v7.widget.RecyclerView
-        android:layout_below="@+id/line3"
-        android:layout_marginVertical="10dp"
         android:id="@+id/rv_rentcar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/line1"
+        android:layout_marginTop="20dp">
 
     </android.support.v7.widget.RecyclerView>
-
-
-    <FrameLayout
-        android:id="@+id/frameLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="10dp" />
 
 
 </RelativeLayout>

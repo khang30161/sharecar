@@ -20,17 +20,6 @@ public class AddProduct extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_add_product, container, false);
-        mAddpro=view.findViewById(R.id.addproduct);
-
-        mAddpro.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                        Intent  intent=new Intent(getActivity(), RentCarFloat.class);
-                        startActivity(intent);
-                        return;
-
-                    }
-                });
 
 
         return view;

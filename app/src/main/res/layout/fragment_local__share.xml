@@ -6,48 +6,64 @@
     android:layout_marginTop="50dp"
 
     tools:context=".Fragment.Local_Share">
+
     <TextView
         android:id="@+id/line"
 
         android:layout_width="match_parent"
-        android:gravity="center"
-        android:background="@color/common_google_signin_btn_text_dark_focused"
-        android:textColor="@color/cardview_light_background"
         android:layout_height="50dp"
-        android:text="ĐỊA ĐIỂM"/>
+        android:background="@color/common_google_signin_btn_text_dark_focused"
+        android:gravity="center"
+        android:text="ĐỊA ĐIỂM"
+        android:textColor="@color/cardview_light_background" />
+
     <LinearLayout
-        android:layout_marginTop="25dp"
-        android:layout_below="@+id/line"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/line"
+        android:layout_marginTop="25dp"
         android:orientation="vertical">
+
         <TextView
-            android:textColor="@color/common_google_signin_btn_text_dark_focused"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Địa điểm:"/>
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="Địa điểm:"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-        <TextView
-            android:layout_marginTop="15dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="city"
-            android:layout_marginLeft="20dp"/>
-        <Spinner
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="15dp"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content">
 
-        </Spinner>
+            <TextView
+                android:id="@+id/tv_share_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:text="city" />
+
+            <Spinner
+                android:id="@+id/spinner_share"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp">
+
+            </Spinner>
+
+
+
         </LinearLayout>
+        <FrameLayout
+
+            android:id="@+id/frameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp" />
 
     </LinearLayout>
-
 
 
 </RelativeLayout>

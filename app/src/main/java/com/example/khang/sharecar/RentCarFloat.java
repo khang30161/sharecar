@@ -1,43 +1,53 @@
 package com.example.khang.sharecar;
 
+import android.graphics.drawable.GradientDrawable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 public class RentCarFloat extends AppCompatActivity {
-    Button mXemay, mOto;
+    private ViewPager viewPager;
+    private TabLayout tabLayout;
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rent_car_float);
-        mOto = (Button) findViewById(R.id.oto);
-        mXemay = (Button) findViewById(R.id.xemay);
-        mXemay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadFragment(new XemayFragment());
+        viewPager = findViewById(R.id.view_pager3);
+        tabLayout = findViewById(R.id.tablayout3);
+        addControl();
 
-            }
-        });
-// perform setOnClickListener event on Second Button
-        mOto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-// load Second Fragment
-                loadFragment(new OtoFragment());
-            }
-        });
     }
-    private void loadFragment(Fragment fragment) {
-        //switching fragment
-        if (fragment != null) {
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.frameLayout1, fragment)
-                    .commit();
+
+    private void addControl() {
+
+
+        FragmentManager manager = getSupportFragmentManager();
+        PageAdapterPhanQuyen adapter = new PageAdapterPhanQuyen(manager);
+        viewPager.setAdapter(adapter);
+        tabLayout.setupWithViewPager(viewPager);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.setTabsFromPagerAdapter(adapter);//deprecated
+        tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(viewPager));
+        View root = tabLayout.getChildAt(0);
+        if (root instanceof LinearLayout) {
+            ((LinearLayout) root).setShowDividers(LinearLayout.SHOW_DIVIDER_MIDDLE);
+            GradientDrawable drawable = new GradientDrawable();
+            drawable.setColor(getResources().getColor(R.color.colorPrimaryDark));
+            drawable.setSize(2, 1);
+            ((LinearLayout) root).setDividerPadding(10);
+            ((LinearLayout) root).setDividerDrawable(drawable);
         }
+
     }
 }

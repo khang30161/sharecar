@@ -79,6 +79,8 @@ public class SelectItem extends AppCompatActivity {
 
                 FirebaseDatabase.getInstance().getReference().child("post").child(rentManager.getId()).setValue(rentManager);
                 Toast.makeText(SelectItem.this, "Đặt hàng thành công", Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(SelectItem.this, RentCar.class);
+                startActivity(intent);
                 finish();
             }
         });

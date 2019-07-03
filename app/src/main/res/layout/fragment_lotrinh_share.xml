@@ -6,13 +6,67 @@
     android:layout_marginTop="50dp"
     tools:context=".Fragment.Lotrinh_share">
 
-    
+
     <TextView
-        android:background="@color/common_google_signin_btn_text_dark_focused"
-        android:textColor="@color/cardview_light_background"
-        android:gravity="center"
+        android:id="@+id/line1"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="LỘ TRÌNH" />
+        android:background="@color/common_google_signin_btn_text_dark_focused"
+        android:gravity="center"
+        android:text="LỘ TRÌNH"
+        android:textColor="@color/cardview_light_background" />
 
+
+    <LinearLayout
+        android:id="@+id/line2"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/line1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:background="@color/common_google_signin_btn_text_dark_focused"
+            android:textColor="@color/cardview_light_background"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:text="Điểm bắt đầu"/>
+        <EditText
+            android:id="@+id/et_start"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Nhập sô nhà, tên đường, phường.."/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/line3"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/line2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:background="@color/common_google_signin_btn_text_dark_focused"
+            android:textColor="@color/cardview_light_background"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:text="Điểm Kết Thúc"/>
+        <EditText
+            android:id="@+id/et_finish"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Nhập sô nhà, tên đường, phường.."/>
+
+    </LinearLayout>
+    <Button
+        android:id="@+id/seenandpost"
+        android:textColor="@color/cardview_light_background"
+        android:background="@color/common_google_signin_btn_text_dark_focused"
+        android:text="Xem và đăng"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/line3"/>
 </RelativeLayout>

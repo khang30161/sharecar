@@ -1,4 +1,4 @@
-package com.example.khang.sharecar.Fragment;
+package com.example.khang.sharecar.Fragment_noti;
 
 import android.content.Context;
 import android.net.Uri;
@@ -11,17 +11,15 @@ import android.view.ViewGroup;
 import com.example.khang.sharecar.R;
 
 
-public class Seat_share extends Fragment {
 
-
+public class dichungxe_contract extends Fragment {
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_seat_share, container, false);
+        return inflater.inflate(R.layout.fragment_dichungxe_contract, container, false);
     }
-
 
 }

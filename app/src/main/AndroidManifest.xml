@@ -18,13 +18,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".DriverShareCar"></activity>
+        <activity android:name=".SelectItemShareCustomer"></activity>
+        <activity android:name=".ShareCarCustomer" />
+        <activity android:name=".ShareCarDriverSumary" />
+        <activity android:name=".DriverShareCar" />
         <activity android:name=".HeaderRecycleviewRentcar" />
+        <activity android:name=".SelectItemRentDetail" />
         <activity android:name=".RentCarFloat" />
         <activity android:name=".SelectItem" />
-        <activity android:name=".NeedRentActivity" />
+        <activity android:name=".RentOtoInfomation" />
         <activity android:name=".RentCarAdapter" />
-        <activity android:name=".WantRentActivity" />
+        <activity android:name=".RentBikeInformation" />
         <activity android:name=".RentCar" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -38,9 +42,6 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity
-            android:name=".DriverMapActivity"
-            android:label="@string/title_activity_driver_map" />
         <activity android:name=".ShareCar" />
         <activity android:name=".StartActivity">
             <intent-filter>
@@ -49,6 +50,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".DriverMapActivity"
+            android:label="@string/title_activity_driver_map" />
         <activity android:name=".Registration" />
         <activity android:name=".DriverLoginActivity" />
         <activity android:name=".MainActivity" />

@@ -40,7 +40,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             case R.id.navigation_dashboard:
                 fragment=new DashboardFragment();
                 break;
+            case R.id.navigation_notifications:
+                fragment=new CheckoutFragment();
+                break;
  }
+
 
         return loadFragment(fragment);
     }

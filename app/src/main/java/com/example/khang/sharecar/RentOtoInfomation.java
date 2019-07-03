@@ -37,7 +37,7 @@ import com.google.firebase.storage.UploadTask;
 import java.io.IOException;
 import java.util.Calendar;
 
-public class NeedRentActivity extends AppCompatActivity {
+public class RentOtoInfomation extends AppCompatActivity {
     public static String FB_STORAGE_PATH = "image/";
     public static String FB_DATABASE_PATH = "post";
     private final int PICK_IMAGE_REQUEST = 71;
@@ -66,15 +66,15 @@ public class NeedRentActivity extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference(FB_DATABASE_PATH);
 
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-        mLocation = findViewById(R.id.selection1);
-        mEnddate = findViewById(R.id.endday1);
-        mStartdate = findViewById(R.id.startday1);
-        mPrice = findViewById(R.id.price1);
+        mLocation = findViewById(R.id.selection);
+        mEnddate = findViewById(R.id.endday);
+        mStartdate = findViewById(R.id.startday);
+        mPrice = findViewById(R.id.price);
         mIntro=findViewById(R.id.et_intro);
-        finish = findViewById(R.id.want_rent_finish_button1);
-        mPictureRent = findViewById(R.id.add_pic_need1);
-        mAddPic = findViewById(R.id.btn_add_pic1);
-        mStyle=findViewById(R.id.xe_can_thue);
+        finish = findViewById(R.id.want_rent_finish_button);
+        mPictureRent = findViewById(R.id.add_pic_rent);
+        mAddPic = findViewById(R.id.btn_add_pic);
+        mStyle=findViewById(R.id.can_thue);
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
         finish.setOnClickListener(new View.OnClickListener() {
@@ -101,8 +101,8 @@ public class NeedRentActivity extends AppCompatActivity {
         this.showDatePickerDialog();
         this.endDatePickerDialog();
         //Lấy đối tượng Spinner ra
-        Spinner spin = findViewById(R.id.spinner1);
-        selection = findViewById(R.id.selection1);
+        Spinner spin = findViewById(R.id.spinner);
+        selection = findViewById(R.id.selection);
         //Gán Data source (arr) vào Adapter
         ArrayAdapter<String> adapter = new ArrayAdapter<String>
                 (this, android.R.layout.simple_spinner_item, arr);
@@ -168,10 +168,10 @@ public class NeedRentActivity extends AppCompatActivity {
 
                         progressDialog.dismiss();
 
-                        Toast.makeText(NeedRentActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RentOtoInfomation.this, "Uploaded", Toast.LENGTH_SHORT).show();
 
 
-                        Intent intent = new Intent(NeedRentActivity.this, RentCar.class);
+                        Intent intent = new Intent(RentOtoInfomation.this, RentCar.class);
                         startActivity(intent);
                         finish();
 
@@ -185,7 +185,7 @@ public class NeedRentActivity extends AppCompatActivity {
 
 
     private void endDatePickerDialog() {
-        Button endDatePickerDialogButton = (Button) findViewById(R.id.endDatePickerDialogButton1);
+        Button endDatePickerDialogButton = (Button) findViewById(R.id.endDatePickerDialogButton);
         endDatePickerDialogButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -201,7 +201,7 @@ public class NeedRentActivity extends AppCompatActivity {
                         strBuf.append("-");
                         strBuf.append(dayOfMonth);
 
-                        TextView datePickerValueTextView = (TextView) findViewById(R.id.endday1);
+                        TextView datePickerValueTextView = (TextView) findViewById(R.id.endday);
                         datePickerValueTextView.setText(strBuf.toString());
                     }
                 };
@@ -213,7 +213,7 @@ public class NeedRentActivity extends AppCompatActivity {
                 int day = now.get(java.util.Calendar.DAY_OF_MONTH);
 
                 // Create the new DatePickerDialog instance.
-                DatePickerDialog datePickerDialog = new DatePickerDialog(NeedRentActivity.this, onDateSetListener, year, month, day);
+                DatePickerDialog datePickerDialog = new DatePickerDialog(RentOtoInfomation.this, onDateSetListener, year, month, day);
 
 
                 // Popup the dialog.
@@ -224,7 +224,7 @@ public class NeedRentActivity extends AppCompatActivity {
 
 
     private void showDatePickerDialog() {
-        Button datePickerDialogButton = (Button) findViewById(R.id.datePickerDialogButton1);
+        Button datePickerDialogButton = (Button) findViewById(R.id.datePickerDialogButton);
         datePickerDialogButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -240,7 +240,7 @@ public class NeedRentActivity extends AppCompatActivity {
                         strBuf.append("-");
                         strBuf.append(dayOfMonth);
 
-                        TextView datePickerValueTextView = (TextView) findViewById(R.id.startday1);
+                        TextView datePickerValueTextView = (TextView) findViewById(R.id.startday);
                         datePickerValueTextView.setText(strBuf.toString());
                     }
                 };
@@ -252,7 +252,7 @@ public class NeedRentActivity extends AppCompatActivity {
                 int day = now.get(java.util.Calendar.DAY_OF_MONTH);
 
                 // Create the new DatePickerDialog instance.
-                DatePickerDialog datePickerDialog = new DatePickerDialog(NeedRentActivity.this, onDateSetListener, year, month, day);
+                DatePickerDialog datePickerDialog = new DatePickerDialog(RentOtoInfomation.this, onDateSetListener, year, month, day);
 
 
                 // Popup the dialog.
