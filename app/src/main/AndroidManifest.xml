@@ -18,7 +18,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".SelectItemShareCustomer"></activity>
+        <activity android:name=".InfoDetail"></activity>
+        <activity android:name=".ContactDichungxe" />
+        <activity android:name=".ContactRent" />
+        <activity android:name=".SelectItemShareCustomer" />
         <activity android:name=".ShareCarCustomer" />
         <activity android:name=".ShareCarDriverSumary" />
         <activity android:name=".DriverShareCar" />

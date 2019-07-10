@@ -1,7 +1,6 @@
 package com.example.khang.sharecar.Fragment_noti;
 
-import android.content.Context;
-import android.net.Uri;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -12,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.khang.sharecar.ContactRent;
 import com.example.khang.sharecar.R;
 import com.example.khang.sharecar.RentCarAdapter;
 import com.example.khang.sharecar.RentManagers;
@@ -27,23 +27,23 @@ import java.util.List;
 
 
 public class thuexe_contract extends Fragment {
-    private RecyclerView recyclerView;
     List<RentManagers> rentManagers = new ArrayList<>();
     DatabaseReference databaseReference;
+    private RecyclerView recyclerView;
     private RentCarAdapter rentCarAdapter;
-
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_thuexe_contract, container, false);
+        View view = inflater.inflate(R.layout.fragment_thuexe_contract, container, false);
         databaseReference = FirebaseDatabase.getInstance().getReference("post" + "");
         recyclerView = view.findViewById(R.id.rv_thue_contract);
         recyclerView.setHasFixedSize(true);
         return view;
     }
+
     @Override
     public void onStart() {
         super.onStart();
@@ -51,6 +51,7 @@ public class thuexe_contract extends Fragment {
         databaseReference.orderByChild("userId").equalTo(uid).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull final DataSnapshot dataSnapshot) {
+                rentManagers.clear();
                 for (DataSnapshot rentSnapshot : dataSnapshot.getChildren()) {
                     RentManagers rentManager = rentSnapshot.getValue(RentManagers.class);
                     if (rentManager.getUserIdBook() == null) {
@@ -61,9 +62,12 @@ public class thuexe_contract extends Fragment {
                     }
 
                 }
-                rentCarAdapter = new RentCarAdapter(this, rentManagers, getActivity(), new RentCarAdapter.Action() {
+                rentCarAdapter = new RentCarAdapter(rentManagers, getActivity(), new RentCarAdapter.Action() {
                     @Override
                     public void onClickItem(RentManagers manager, int position) {
+                        Intent intent = new Intent(getActivity(), ContactRent.class);
+                        intent.putExtra("rentManager", manager);
+                        getActivity().startActivity(intent);
 
                     }
 
@@ -79,6 +83,7 @@ public class thuexe_contract extends Fragment {
 
 
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -86,9 +91,7 @@ public class thuexe_contract extends Fragment {
         });
 
 
-
     }
-
 
 
 }

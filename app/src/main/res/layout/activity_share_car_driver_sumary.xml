@@ -174,7 +174,7 @@
             android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
         <LinearLayout
-            android:id="@+id/line4"
+            android:id="@+id/line46"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/line3"
@@ -186,7 +186,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
-                android:text="Địa điểm:"
+                android:text="Địa điểm bắt đầu"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
             <LinearLayout
@@ -219,6 +219,54 @@
 
 
             </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/line4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/line46"
+            android:layout_marginTop="25dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:text="Địa điểm kết thúc:"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/spinner_share1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="15dp"/>
+                <Spinner
+                    android:id="@+id/spinner_district1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="15dp"/>
+
+                <Spinner
+                    android:id="@+id/spinner_war1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="15dp"/>
+
+
+
+            </LinearLayout>
+
 
             <FrameLayout
 
@@ -232,46 +280,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/line1"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="0dp"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="25dp"
-                    android:background="@color/common_google_signin_btn_text_dark_focused"
-                    android:text="Điểm bắt đầu"
-                    android:textColor="@color/cardview_light_background" />
-
-                <EditText
-                    android:id="@+id/et_start"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="Nhập sô nhà, tên đường, phường.."
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused" />
-
-            </LinearLayout>
+                </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/line63"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/line62"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="0dp"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="25dp"
-                    android:background="@color/common_google_signin_btn_text_dark_focused"
-                    android:text="Điểm Kết Thúc"
-                    android:textColor="@color/cardview_light_background" />
-
-                <EditText
-                    android:id="@+id/et_finish"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="Nhập sô nhà, tên đường, phường.."
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
             </LinearLayout>
 
@@ -620,7 +641,7 @@
                     android:text="**Giá tiền / Person"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
-                <TextView
+                <EditText
                     android:id="@+id/priceshare"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

@@ -19,6 +19,24 @@ public class RentManagers implements Serializable {
     private String intro;
     private String UserId;
     private String userIdBook;
+    private String key;
+    private String categogy;
+
+    public String getCategogy() {
+        return categogy;
+    }
+
+    public void setCategogy(String categogy) {
+        this.categogy = categogy;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
 
     public String getStyle() {
         return style;

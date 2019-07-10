@@ -4,51 +4,51 @@
       "city": "TP.HCM",
       "district": [
         {
-          "district_name": "1",
+          "district_name": "Quận 1",
           "ward": [ "Bến Nghé", " Bến Thành", "Cô Giang", "Cầu Kho", "Cầu Ông Lãnh", "Đa Kao", "Nguyễn Cư Trinh", "Nguyễn Thái Bình", "Phạm Ngũ Lão", "Tân Định" ]
         },
         {
-          "district_name": "2",
+          "district_name": "Quận 2",
           "ward":[ "An Khánh", "An Lợi Đông", "An Phú", "Bình An", "Bình Khánh", "Bình Trưng Đông", "Bình Trưng Tây", "Cát Lái", "Thạnh Mỹ Lợi", "Thảo Điền", "Thủ Thiêm" ]
         },
         {
-          "district_name": "3",
+          "district_name": "Quận 3",
           "ward":[ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14" ]
         },
         {
-          "district_name": "4",
+          "district_name": "Quận 4",
           "ward":[ "1", "2", "3", "4", "5", "6",  "8", "9", "10", "11", "12", "13", "14", "15", "16", "18" ]
         },
         {
-          "district_name": "5",
+          "district_name": "Quận 5",
           "ward":[ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15" ]
         },
         {
-          "district_name": "6",
+          "district_name": "Quận 6",
           "ward":[ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14" ]
         },
         {
-          "district_name": "7",
+          "district_name": "Quận 7",
           "ward":[ "Bình Thuận", "Phú Mỹ", "Phú Thuận", "Tân Hưng", "Tân Kiểng", "Tân Phong", "Tân Phú", "Tân Quy", "Tân Thuận Đông", "Tân Thuận Tây" ]
         },
         {
-          "district_name": "8",
+          "district_name": "Quận 8",
           "ward":[ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16" ]
         },
         {
-          "district_name": "9",
+          "district_name": "Quận 9",
           "ward":[ "Hiệp Phú", "Long Bình", "Long Phước", "Long Thạnh Mỹ", "Long Trường", "Phú Hữu", "Phước Bình", "Phước Long A", "Phước Long B", "Tân Phú", "Tăng Nhơn Phú A", "Tăng Nhơn Phú B", "Trường Thạnh" ]
         },
         {
-          "district_name": "10",
+          "district_name": "Quận 10",
           "ward":[ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15" ]
         },
         {
-          "district_name": "11",
+          "district_name": "Quận 11",
           "ward":[ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16" ]
         },
         {
-          "district_name": "12",
+          "district_name": "Quận 12",
           "ward":[ " An Phú Đông", "Đông Hưng Thuận"," Hiệp Thành", "Tân Chánh Hiệp", "Tân Hưng Thuận", "Tân Thới Hiệp", "Tân Thới Nhất", "Thạnh Lộc", "Thạnh Xuân", "Thới An", "Trung Mỹ Tây" ]
         }
       ]
@@ -62,7 +62,7 @@
         },
         {
           "district_name": "Quan 2",
-          "ward":[ "Phuong 1", "Phuong 2", "Phuong 3" ]
+          "ward":[ "1", "2", "3" ]
         }
       ]
     }

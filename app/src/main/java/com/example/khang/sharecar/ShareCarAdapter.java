@@ -26,7 +26,7 @@ private List<ShareManager> shareManager;
 
 
 
-    public ShareCarAdapter(ValueEventListener valueEventListener, List<ShareManager> shareManager, Context context, Action action) {
+    public ShareCarAdapter(List<ShareManager> shareManager, Context context, Action action) {
         this.shareManager= shareManager;
         this.context=  context;
         this.action= action;

@@ -1,5 +1,7 @@
 package com.example.khang.sharecar;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,10 +16,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class SelectItemShareCustomer extends AppCompatActivity {
-    private TextView mStartday, mStarttimeH, mStarttimeP, mEndtimeH, mEndtimeP,mLocalCity, mStartpoint, mEndpoint, mSochongoi, mLoaixe, mDOngxe, mSochotrong, mNote, mPrice;
+    private TextView mStartday, mStarttimeH, mStarttimeP, mEndtimeH, mEndtimeP, mSochongoi, mLoaixe, mDOngxe, mSochotrong, mNote, mPrice;
     private ImageView mPic;
     private TextView Id;
     private Button mSelect;
+    private TextView mCityStart, mDistrictStart, mWardStart, mCityEnd, mDistrictEnd, mWardEnd;
+    String prefname = "my_data";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +32,12 @@ public class SelectItemShareCustomer extends AppCompatActivity {
         mStarttimeP=findViewById(R.id.tv_phut_start);
         mEndtimeH=findViewById(R.id.tv_hour_end);
         mEndtimeP=findViewById(R.id.tv_phut_end);
-        mLocalCity=findViewById(R.id.tv_diadiem);
-        mStartpoint=findViewById(R.id.tv_endpoint);
-        mEndpoint=findViewById(R.id.tv_startpoint);
+        mCityStart=findViewById(R.id.tv_city_share_start);
+        mCityEnd=findViewById(R.id.tv_city_share_end);
+        mDistrictStart=findViewById(R.id.tv_quan_share_start);
+        mDistrictEnd=findViewById(R.id.tv_quan_share_end);
+        mWardStart=findViewById(R.id.tv_phuong_share_start);
+        mWardEnd=findViewById(R.id.tv_phuong_share_end);
         mSochongoi=findViewById(R.id.tv_so_cho_ngoi);
         mLoaixe=findViewById(R.id.tv_loai_xe);
         mDOngxe=findViewById(R.id.tv_dong_xe);
@@ -46,9 +53,12 @@ public class SelectItemShareCustomer extends AppCompatActivity {
         mStarttimeP.setText(String.valueOf(shareManager.getStarttimem()));
         mEndtimeH.setText(String.valueOf(shareManager.getEndtimeh()));
         mEndtimeP.setText(String.valueOf(shareManager.getEndtimem()));
-        mLocalCity.setText(shareManager.getLocalcity());
-        mStartpoint.setText(shareManager.getStartpoint());
-        mEndpoint.setText(shareManager.getEndpoint());
+        mCityStart.setText(shareManager.getLocalcity());
+        mCityEnd.setText(shareManager.getLocalcity1());
+        mDistrictStart.setText(shareManager.getLocalquan());
+        mDistrictEnd.setText(shareManager.getLocalquan1());
+        mWardStart.setText(shareManager.getLocalphuong());
+        mWardEnd.setText(shareManager.getLocalphuong1());
         mSochongoi.setText(shareManager.getSeat());
         mLoaixe.setText(shareManager.getLoaixe());
         mDOngxe.setText(shareManager.getIntro());
@@ -56,6 +66,22 @@ public class SelectItemShareCustomer extends AppCompatActivity {
         mNote.setText(shareManager.getNote());
         mPrice.setText(shareManager.getPrice());
         Id.setText(shareManager.getUid());
+        Id.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(SelectItemShareCustomer.this, InfoDetail.class);
+                String prefname = "my_data";
+                SharedPreferences pre = SelectItemShareCustomer.this.getSharedPreferences(prefname, MODE_PRIVATE);
+                SharedPreferences.Editor editor = pre.edit();
+                String userid = Id.getText().toString();
+
+
+                editor.putString("id", userid);
+
+                editor.apply();
+                startActivity(intent);
+            }
+        });
         Glide.with(
                 SelectItemShareCustomer.this).load(shareManager.getUrl()).into(mPic);
 

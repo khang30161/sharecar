@@ -11,6 +11,9 @@ public class ShareManager implements Serializable {
    private String localcity;
    private String localquan;
    private String localphuong;
+    private String localcity1;
+    private String localquan1;
+    private String localphuong1;
    private String seat;
    private String loaixe;
    private String intro;
@@ -27,6 +30,30 @@ public class ShareManager implements Serializable {
    private String isBooking4;
    private String isBooking5;
    private String idShare;
+
+    public String getLocalcity1() {
+        return localcity1;
+    }
+
+    public void setLocalcity1(String localcity1) {
+        this.localcity1 = localcity1;
+    }
+
+    public String getLocalquan1() {
+        return localquan1;
+    }
+
+    public void setLocalquan1(String localquan1) {
+        this.localquan1 = localquan1;
+    }
+
+    public String getLocalphuong1() {
+        return localphuong1;
+    }
+
+    public void setLocalphuong1(String localphuong1) {
+        this.localphuong1 = localphuong1;
+    }
 
     public String getLocalphuong() {
         return localphuong;

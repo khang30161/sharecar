@@ -3,168 +3,204 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@drawable/yellow"
-    tools:context=".RentCar">
-        <Button
-            android:id="@+id/add_product"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            style="@style/CardView.Dark"
-            android:text="NHẬP SẢN PHẨM CỦA BẠN!!!"
-            android:textColor="@color/cardview_light_background"
-            android:layout_alignParentBottom="true"
-            android:background="@color/common_google_signin_btn_text_dark_focused"
-            android:layout_marginRight="60dp"
-            android:layout_marginLeft="60dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"/>
 
+    tools:context=".RentCar">
+
+    <Button
+        android:id="@+id/add_product"
+        style="@style/CardView.Dark"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginBottom="5dp"
+        android:background="@color/common_google_signin_btn_text_dark_focused"
+        android:text="NHẬP SẢN PHẨM CỦA BẠN!!!"
+        android:textColor="@color/cardview_light_background" />
+
+    <ImageView
+        android:id="@+id/logoo"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/common_google_signin_btn_text_dark_focused"
+        android:src="@drawable/logo1" />
+
+    <TextView
+        android:id="@+id/seach"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/logoo"
+        android:layout_marginTop="20dp"
+        android:text="NHẬP THÔNG TIN TÌM KIẾM TẠI ĐÂY:"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="119dp"
+        android:background="@color/common_google_signin_btn_text_dark_focused" />
 
     <RelativeLayout
-        android:background="@drawable/yellow"
-
+        android:id="@+id/line1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <ImageView
-            android:background="@color/common_google_signin_btn_text_dark_focused"
-            android:id="@+id/logoo"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:src="@drawable/logo1"/>
+        android:layout_height="193dp"
+        android:layout_below="@+id/seach"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/yellow">
 
-        <TextView
-            android:textColor="@color/common_google_signin_btn_text_dark_focused"
-            android:layout_marginTop="20dp"
-            android:id="@+id/seach"
-            android:layout_below="@+id/logoo"
+        <RadioGroup
+            android:id="@+id/rg_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="NHẬP THÔNG TIN TÌM KIẾM TẠI ĐÂY:"/>
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_oto"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Xe Ô tô" />
+
+            <RadioButton
+                android:id="@+id/rb_xemay"
+                android:layout_marginLeft="70dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Xe máy" />
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/tv_loaixe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RadioGroup>
+
 
         <LinearLayout
-            android:background="@color/common_google_signin_btn_text_dark_focused"
-            android:layout_marginTop="20dp"
             android:id="@+id/line2"
-            android:layout_below="@+id/seach"
             android:layout_width="match_parent"
             android:layout_height="35dp"
+            android:layout_below="@+id/rg_style"
+            android:layout_marginTop="20dp"
+            android:background="@color/cardview_light_background"
             android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nhập địa điểm:"
-                android:textColor="@color/cardview_light_background"
-                android:textColorHint="@color/cardview_light_background"/>
-            <TextView
-                android:id="@+id/tv_local"
-                android:layout_marginLeft="15dp"
-                android:textColor="@color/cardview_light_background"
-                android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:text="Location"/>
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textColorHint="@color/common_google_signin_btn_text_dark_focused" />
+
+
             <Spinner
 
+                android:id="@+id/spinner"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/spinner">
-            </Spinner>
+                android:layout_height="wrap_content"></Spinner>
         </LinearLayout>
 
 
-
         <LinearLayout
-            android:layout_marginTop="10dp"
             android:id="@+id/line4"
-            android:layout_below="@+id/line2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/line2"
+            android:layout_marginTop="10dp"
             android:background="@color/common_google_signin_btn_text_dark_focused"
             android:orientation="horizontal">
+
             <Button
                 android:id="@+id/btn_pickup"
-                android:textColor="@color/cardview_light_background"
-                android:background="@color/common_google_signin_btn_text_dark_focused"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Ngày đi"/>
+                android:background="@color/common_google_signin_btn_text_dark_focused"
+                android:text="Ngày đi"
+                android:textColor="@color/cardview_light_background" />
+
             <TextView
                 android:id="@+id/tv_pickup"
-                android:textColor="@color/cardview_light_background"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="5dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="mm/dd/yyyy"/>
-            <Button
-                style="@style/CardView.Dark"
-                android:id="@+id/btn_refund"
+                android:hint="mm/dd/yyyy"
                 android:textColor="@color/cardview_light_background"
-                android:background="@color/common_google_signin_btn_text_dark_focused"
-                android:layout_marginHorizontal="15dp"
+                android:textColorHint="@color/cardview_light_background" />
+
+            <Button
+                android:id="@+id/btn_refund"
+                style="@style/CardView.Dark"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Ngày Hoàn trả"/>
+                android:layout_marginHorizontal="15dp"
+                android:background="@color/common_google_signin_btn_text_dark_focused"
+                android:text="Ngày Hoàn trả"
+                android:textColor="@color/cardview_light_background" />
+
             <TextView
                 android:id="@+id/tv_refund"
-                android:textColor="@color/cardview_light_background"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="mm/dd/yyyy"/>
+                android:hint="mm/dd/yyyy"
+                android:textColor="@color/cardview_light_background"
+                android:textColorHint="@color/cardview_light_background" />
         </LinearLayout>
 
         <RadioGroup
 
-            android:layout_marginTop="10dp"
             android:id="@+id/line5"
-            android:layout_below="@+id/line4"
             android:layout_width="match_parent"
             android:layout_height="35dp"
+            android:layout_below="@+id/line4"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal">
+
             <RadioButton
                 android:id="@+id/renttttt"
-                android:layout_marginLeft="15dp"
-                android:text="Cần Cho Thuê"
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"/>
-            <RadioButton
+                android:layout_marginLeft="15dp"
+                android:text="Cần Cho Thuê"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
-                android:layout_marginLeft="40dp"
-                android:layout_marginHorizontal="50dp"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            <RadioButton
+                android:id="@+id/needrentt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cần Thuê"/>
+                android:layout_marginHorizontal="50dp"
+                android:layout_marginLeft="40dp"
+                android:text="Cần Thuê"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+
+            <TextView
+                android:id="@+id/tv_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
         </RadioGroup>
+
         <View
-            android:background="@color/common_google_signin_btn_text_dark_focused"
+            android:layout_width="wrap_content"
+            android:layout_height="2dp"
             android:layout_below="@+id/line5"
-            android:layout_width="match_parent"
-            android:layout_height="2dp"/>
-
-
-        <TextView
-            android:id="@+id/line3"
-
-            android:layout_below="@+id/line5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimaryDark"/>
-        <android.support.v7.widget.RecyclerView
-            android:layout_below="@+id/line3"
-            android:layout_marginTop="20dp"
-            android:layout_marginVertical="10dp"
-            android:id="@+id/rv_rentcar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        </android.support.v7.widget.RecyclerView>
+            android:background="@color/common_google_signin_btn_text_dark_focused" />
 
 
     </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_rentcar"
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/line1"
+        android:layout_marginTop="20dp">
+
+    </android.support.v7.widget.RecyclerView>
 
 
 </RelativeLayout>

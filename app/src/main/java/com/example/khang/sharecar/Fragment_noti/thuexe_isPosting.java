@@ -1,8 +1,6 @@
 package com.example.khang.sharecar.Fragment_noti;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -14,10 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.khang.sharecar.R;
-import com.example.khang.sharecar.RentCar;
 import com.example.khang.sharecar.RentCarAdapter;
 import com.example.khang.sharecar.RentManagers;
-import com.example.khang.sharecar.SelectItem;
 import com.example.khang.sharecar.SelectItemRentDetail;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -31,21 +27,22 @@ import java.util.List;
 
 
 public class thuexe_isPosting extends Fragment {
-    private RecyclerView recyclerView;
     List<RentManagers> rentManagers = new ArrayList<>();
     DatabaseReference databaseReference;
+    private RecyclerView recyclerView;
     private RentCarAdapter rentCarAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_thuexe_is_posting, container, false);
+        View view = inflater.inflate(R.layout.fragment_thuexe_is_posting, container, false);
         databaseReference = FirebaseDatabase.getInstance().getReference("post" + "");
         recyclerView = view.findViewById(R.id.rv_thue);
         recyclerView.setHasFixedSize(true);
         return view;
     }
+
     @Override
     public void onStart() {
         super.onStart();
@@ -53,43 +50,43 @@ public class thuexe_isPosting extends Fragment {
         databaseReference.orderByChild("userId").equalTo(uid).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull final DataSnapshot dataSnapshot) {
+                rentManagers.clear();
                 for (DataSnapshot rentSnapshot : dataSnapshot.getChildren()) {
                     RentManagers rentManager = rentSnapshot.getValue(RentManagers.class);
+                    rentManager.setKey(rentSnapshot.getKey());
                     if (rentManager.getUserIdBook() != null) {
                         continue;
                     } else {
                         rentManagers.add(rentManager);
-
                     }
 
                 }
-                rentCarAdapter = new RentCarAdapter(this, rentManagers, getContext(), new RentCarAdapter.Action() {
+                rentCarAdapter = new RentCarAdapter(rentManagers, getContext(), new RentCarAdapter.Action() {
                     @Override
                     public void onClickItem(RentManagers manager, int position) {
                         Intent intent = new Intent(getActivity(), SelectItemRentDetail.class);
                         intent.putExtra("rentManager", manager);
                         getActivity().startActivity(intent);
-
                     }
 
                     @Override
                     public void onLongClickItem(RentManagers manager, int position) {
-
+                        String key = manager.getKey();
+                        databaseReference = FirebaseDatabase.getInstance().getReference("post").child(key);
+                        databaseReference.removeValue();
                     }
                 });
                 RecyclerView.LayoutManager layoutmanager = new LinearLayoutManager(getActivity());
                 recyclerView.setLayoutManager(layoutmanager);
                 recyclerView.setItemAnimator(new DefaultItemAnimator());
                 recyclerView.setAdapter(rentCarAdapter);
-
-
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
-
 
 
     }

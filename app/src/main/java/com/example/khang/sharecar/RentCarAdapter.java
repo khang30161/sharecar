@@ -23,24 +23,13 @@ public class RentCarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private List<RentManagers> rentManagers;
 
 
-
-    public RentCarAdapter(ValueEventListener valueEventListener, List<RentManagers> rentManagers, Context context, Action action) {
-        this.rentManagers=  rentManagers;
-        this.context=  context;
-        this.action= action;
+    public RentCarAdapter(List<RentManagers> rentManagers, Context context, Action action) {
+        this.rentManagers = rentManagers;
+        this.context = context;
+        this.action = action;
 
 
     }
-
-
-
-    public interface Action {
-        void onClickItem(RentManagers manager, int position);
-
-        void onLongClickItem(RentManagers manager, int position);
-    }
-
-
 
     @NonNull
     @Override
@@ -74,6 +63,15 @@ public class RentCarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                     action.onClickItem(rentManagers.get(position), position);
             }
         });
+        holder.mLine.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                if (action != null) {
+                    action.onLongClickItem(rentManagers.get(position), position);
+                }
+                return false;
+            }
+        });
     }
 
     @Override
@@ -87,20 +85,26 @@ public class RentCarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         this.rentManagers = rentManagers;
     }
 
-    public static class Viewholder extends RecyclerView.ViewHolder{
-        private TextView mLocation, mPrice, mEndTime, mStartTime, mStyle;
+    public interface Action {
+        void onClickItem(RentManagers manager, int position);
+
+        void onLongClickItem(RentManagers manager, int position);
+    }
+
+    public static class Viewholder extends RecyclerView.ViewHolder {
         ImageView mPic;
         LinearLayout mLine;
+        private TextView mLocation, mPrice, mEndTime, mStartTime, mStyle;
 
         public Viewholder(View view) {
             super(view);
-            mLocation=view.findViewById(R.id.location_adapter);
-            mEndTime=view.findViewById(R.id.endtime_adapter);
-            mPrice=view.findViewById(R.id.price_adapter);
-            mStartTime=view.findViewById(R.id.starttime_adapter);
-            mPic=view.findViewById(R.id.iv_adapter);
-            mLine=view.findViewById(R.id.line);
-            mStyle=view.findViewById(R.id.tv_info123);
+            mLocation = view.findViewById(R.id.location_adapter);
+            mEndTime = view.findViewById(R.id.endtime_adapter);
+            mPrice = view.findViewById(R.id.price_adapter);
+            mStartTime = view.findViewById(R.id.starttime_adapter);
+            mPic = view.findViewById(R.id.iv_adapter);
+            mLine = view.findViewById(R.id.line);
+            mStyle = view.findViewById(R.id.tv_info123);
 
         }
     }

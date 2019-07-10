@@ -163,6 +163,7 @@ public class RentBikeInformation extends AppCompatActivity {
                             rentManager.setStyle(canthue);
                             rentManager.setId(id);
                             rentManager.setUserId(userid);
+                            rentManager.setCategogy("Xe máy");
                             databaseReference.child(id).setValue(rentManager);
                             mLocation.setText("");
                             mEnddate.setText("");

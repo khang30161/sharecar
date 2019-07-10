@@ -2,6 +2,7 @@ package com.example.khang.sharecar;
 
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.app.TimePickerDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -25,9 +26,9 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.example.khang.sharecar.Fragment.hcm_map;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -69,17 +70,18 @@ public class ShareCarDriverSumary extends AppCompatActivity {
     private TextView mStylecar;
     private ImageView mToyota, mFord, mBwm, mMercedes, mVinfast, mHonda, mLambo, mKia;
     private EditText mDongxe;
-    private Spinner mSpinner, mSpinnerDistrict, mSpinnerWard;
+    private Spinner mSpinner, mSpinnerDistrict, mSpinnerWard, mSpinner1, mSpinnerDistrict1, mSpinnerWard1;
     private EditText mStart, mEnd;
     private Button mSummary;
     private Button mAdd;
     private ImageView mPhoto;
     private Uri filePath1;
-    private TextView Price;
+    private EditText Price;
     private JSONArray dataLocation;
     private JSONArray districtListSelect;
     private JSONArray wardListSelect;
     private String citySelected, districtSelected, wardSelected;
+    private Button mStarttime, mEndtime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +90,8 @@ public class ShareCarDriverSumary extends AppCompatActivity {
         readJsonLocation();
         mStartdate = findViewById(R.id.btn_starttime);
         mTvStartdate = findViewById(R.id.tv_startdate);
+        mStarttime = findViewById(R.id.btn_starttimee);
+        mEndtime = findViewById(R.id.btn_endtime);
         mTvStarttimeH = findViewById(R.id.tv_starttimehour);
         mTvStarttimeM = findViewById(R.id.tv_starttimeminute);
         Price = findViewById(R.id.priceshare);
@@ -96,7 +100,10 @@ public class ShareCarDriverSumary extends AppCompatActivity {
 
         mSpinner = findViewById(R.id.spinner_share);
         mSpinnerDistrict = findViewById(R.id.spinner_district);
-        mSpinnerWard=findViewById(R.id.spinner_war);
+        mSpinnerWard = findViewById(R.id.spinner_war);
+        mSpinner1 = findViewById(R.id.spinner_share1);
+        mSpinnerDistrict1 = findViewById(R.id.spinner_district1);
+        mSpinnerWard1 = findViewById(R.id.spinner_war1);
 
         mStart = findViewById(R.id.et_start);
         mEnd = findViewById(R.id.et_finish);
@@ -149,6 +156,7 @@ public class ShareCarDriverSumary extends AppCompatActivity {
                 (android.R.layout.simple_list_item_single_choice);
         //Thiết lập adapter cho Spinner
         mSpinner.setAdapter(adapter);
+        mSpinner1.setAdapter(adapter);
         //thiết lập sự kiện chọn phần tử cho Spinner
         mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -173,16 +181,35 @@ public class ShareCarDriverSumary extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> arg0) {
             }
         });
-        citySelected=mSpinner.getSelectedItem().toString();
+        mSpinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                       int index,
+                                       long arg3) {
+                try {
+                    JSONObject city = dataLocation.getJSONObject(index);
+                    districtListSelect = city.getJSONArray("district");
+
+                    Log.e("TEst", districtListSelect.toString());
+
+                    showSpinnerDistrict1();
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+            }
+        });
+        citySelected = mSpinner.getSelectedItem().toString();
         mAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 chooseimage();
-                int giobd = Integer.parseInt(mTvStarttimeH.getText() + "");
-                int phutbd = Integer.parseInt(mTvStarttimeM.getText() + "");
-                int giokt = Integer.parseInt(mTvEndtimeH.getText() + "");
-                int phutkt = Integer.parseInt(mTvEndtimeP.getText() + "");
-                Price.setText((((giokt + phutkt / 60) - (giobd + phutbd / 60)) * 50 * 10000) + "");
+
             }
 
         });
@@ -236,11 +263,83 @@ public class ShareCarDriverSumary extends AppCompatActivity {
                 mStylecar.setText("Lamborghini");
             }
         });
+        showTimePickerDialog();
+        showEndTimePickerDialog();
 
     }
 
+    private void showTimePickerDialog() {
+        mStarttime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Create a new OnDateSetListener instance. This listener will be invoked when user click ok button in DatePickerDialog.
+                TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+
+                        StringBuffer strBufh = new StringBuffer();
+
+                        strBufh.append(hourOfDay);
+                        StringBuffer m = new StringBuffer();
+                        m.append("");
+                        m.append(minute + "");
+
+                        mTvStarttimeH.setText(strBufh.toString());
+                        mTvStarttimeM.setText(m.toString());
+                    }
+                };
+
+                // Get current year, month and day.
+                Calendar calendar = Calendar.getInstance();
+                final int hour = calendar.get(Calendar.HOUR_OF_DAY);
+                int minute = calendar.get(Calendar.MINUTE);
+
+                // Create the new DatePickerDialog instance.
+                TimePickerDialog timePickerDialog = new TimePickerDialog(ShareCarDriverSumary.this, onTimeSetListener, hour, minute, true);
 
 
+                // Popup the dialog.
+                timePickerDialog.show();
+            }
+        });
+    }
+
+
+    private void showEndTimePickerDialog() {
+        mEndtime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Create a new OnDateSetListener instance. This listener will be invoked when user click ok button in DatePickerDialog.
+                TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+
+                        StringBuffer strBufh = new StringBuffer();
+                        strBufh.append(" ");
+                        strBufh.append(hourOfDay);
+                        StringBuffer stringBufm=new StringBuffer();
+                        stringBufm.append("");
+                        stringBufm.append(minute + "");
+
+                        mTvEndtimeH.setText(strBufh.toString());
+                        mTvEndtimeP.setText(stringBufm.toString());
+                    }
+                };
+
+                // Get current year, month and day.
+                Calendar calendar = Calendar.getInstance();
+                final int hour = calendar.get(Calendar.HOUR_OF_DAY);
+                int minute = calendar.get(Calendar.MINUTE);
+
+                // Create the new DatePickerDialog instance.
+                TimePickerDialog timePickerDialog = new TimePickerDialog(ShareCarDriverSumary.this, onTimeSetListener, hour, minute, true);
+
+
+                // Popup the dialog.
+                timePickerDialog.show();
+            }
+        });
+    }
 
     private void showSpinnerDistrict() {
         mSpinnerDistrict.setVisibility(View.VISIBLE);
@@ -288,13 +387,14 @@ public class ShareCarDriverSumary extends AppCompatActivity {
             }
         });
     }
+
     private void showSpinnerWard() {
         mSpinnerWard.setVisibility(View.VISIBLE);
         final ArrayList<String> arrWardList = new ArrayList<>();
 
         try {
             for (int i = 0; i < wardListSelect.length(); i++) {
-              //  JSONArray city = wardListSelect.getJSONArray(i);
+                //  JSONArray city = wardListSelect.getJSONArray(i);
 
                 arrWardList.add(wardListSelect.getString(i));
             }
@@ -310,6 +410,88 @@ public class ShareCarDriverSumary extends AppCompatActivity {
         mSpinnerWard.setAdapter(adapter);
         //thiết lập sự kiện chọn phần tử cho Spinner
         mSpinnerWard.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                       int index,
+                                       long arg3) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+            }
+        });
+    }
+
+    private void showSpinnerDistrict1() {
+        mSpinnerDistrict1.setVisibility(View.VISIBLE);
+        final ArrayList<String> arrDistrictList = new ArrayList<>();
+
+        try {
+            for (int i = 0; i < districtListSelect.length(); i++) {
+                JSONObject city = districtListSelect.getJSONObject(i);
+                arrDistrictList.add(city.getString("district_name"));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>
+                (this, android.R.layout.simple_spinner_item, arrDistrictList);
+        //phải gọi lệnh này để hiển thị danh sách cho Spinner
+        adapter.setDropDownViewResource
+                (android.R.layout.simple_list_item_single_choice);
+        //Thiết lập adapter cho Spinner
+        mSpinnerDistrict1.setAdapter(adapter);
+        //thiết lập sự kiện chọn phần tử cho Spinner
+        mSpinnerDistrict1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                       int index,
+                                       long arg3) {
+                try {
+                    JSONObject district = districtListSelect.getJSONObject(index);
+                    wardListSelect = district.getJSONArray("ward");
+                    Log.e("TEst", wardListSelect.toString());
+                    showSpinnerWard1();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+//                if (local == "TP.Hồ Chí Minh") {
+//
+//                    loadFragment(new hcm_map());
+//
+//                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+            }
+        });
+    }
+
+    private void showSpinnerWard1() {
+        mSpinnerWard1.setVisibility(View.VISIBLE);
+        final ArrayList<String> arrWardList = new ArrayList<>();
+
+        try {
+            for (int i = 0; i < wardListSelect.length(); i++) {
+                //  JSONArray city = wardListSelect.getJSONArray(i);
+
+                arrWardList.add(wardListSelect.getString(i));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>
+                (this, android.R.layout.simple_spinner_item, arrWardList);
+        //phải gọi lệnh này để hiển thị danh sách cho Spinner
+        adapter.setDropDownViewResource
+                (android.R.layout.simple_list_item_single_choice);
+        //Thiết lập adapter cho Spinner
+        mSpinnerWard1.setAdapter(adapter);
+        //thiết lập sự kiện chọn phần tử cho Spinner
+        mSpinnerWard1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1,
                                        int index,
@@ -386,9 +568,11 @@ public class ShareCarDriverSumary extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         Uri taskResult = task.getResult();
                         SharedPreferences pre = getSharedPreferences(prefname, MODE_PRIVATE);
-                        //String quan = pre.getString("quan", "");
-                        String quan=mSpinnerDistrict.getSelectedItem().toString();
-                        String phuong=mSpinnerWard.getSelectedItem().toString();
+                        String quan = mSpinnerDistrict.getSelectedItem().toString();
+                        String phuong = mSpinnerWard.getSelectedItem().toString();
+                        String cityend = mSpinner1.getSelectedItem().toString();
+                        String quanend = mSpinnerDistrict1.getSelectedItem().toString();
+                        String phuoongend = mSpinnerWard1.getSelectedItem().toString();
                         String startdate = mTvStartdate.getText().toString();
                         int starttimehour = Integer.parseInt(mTvStarttimeH.getText().toString());
                         int starttimemi = Integer.parseInt(mTvStarttimeM.getText().toString());
@@ -398,13 +582,13 @@ public class ShareCarDriverSumary extends AppCompatActivity {
                         String seat = (mSeat.isChecked() == true) ? "4" : "6";
                         String loaixe = mStylecar.getText().toString();
                         String dongxe = mDongxe.getText().toString();
-                        String soghetrong = (mMin.isChecked() == true) ? "3-4 chỗ" : "4-6 chỗ";
+                        String soghetrong = (mMin.isChecked() == true) ? "3-4 chỗ" : "4-5 chỗ";
                         String gioithieu = mIntro.getText().toString();
                         String price = Price.getText().toString();
                         String diembatdau = mStart.getText().toString();
                         String diemketthuc = mEnd.getText().toString();
                         String abc = taskResult.toString();
-                        if (!TextUtils.isEmpty(diembatdau) && !TextUtils.isEmpty(startdate) && !TextUtils.isEmpty(diemketthuc) && !TextUtils.isEmpty(price) && !TextUtils.isEmpty(gioithieu) && !TextUtils.isEmpty(loaixe) && !TextUtils.isEmpty(dongxe) && !TextUtils.isEmpty(soghetrong) && !TextUtils.isEmpty(seat)) {
+                        if (!TextUtils.isEmpty(startdate) && !TextUtils.isEmpty(price) && !TextUtils.isEmpty(gioithieu) && !TextUtils.isEmpty(loaixe) && !TextUtils.isEmpty(dongxe) && !TextUtils.isEmpty(soghetrong) && !TextUtils.isEmpty(seat)) {
                             String id = databaseReference.push().getKey();
                             String userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
                             ShareManager shareManagers = new ShareManager();
@@ -416,6 +600,9 @@ public class ShareCarDriverSumary extends AppCompatActivity {
                             shareManagers.setLocalcity(citySelected);
                             shareManagers.setLocalquan(quan);
                             shareManagers.setLocalphuong(phuong);
+                            shareManagers.setLocalcity1(cityend);
+                            shareManagers.setLocalquan1(quanend);
+                            shareManagers.setLocalphuong1(phuoongend);
                             shareManagers.setSeat(seat);
                             shareManagers.setLoaixe(loaixe);
                             shareManagers.setIntro(dongxe);
@@ -441,7 +628,7 @@ public class ShareCarDriverSumary extends AppCompatActivity {
                         Toast.makeText(ShareCarDriverSumary.this, "Uploaded", Toast.LENGTH_SHORT).show();
 
 
-                        Intent intent = new Intent(ShareCarDriverSumary.this, ShareCar.class);
+                        Intent intent = new Intent(ShareCarDriverSumary.this, ShareCarCustomer.class);
                         startActivity(intent);
                         finish();
                     }

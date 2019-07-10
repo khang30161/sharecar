@@ -3,29 +3,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:background="@drawable/yellow"
+    android:orientation="vertical"
     tools:context=".SelectItem">
 
     <RelativeLayout
-        android:layout_marginBottom="50dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp">
-        <TextView
-            android:textColor="@color/common_google_signin_btn_text_dark_focused"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="THÔNG TIN SẢN PHẨM"
-            android:layout_centerHorizontal="true" />
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="50dp">
 
         <LinearLayout
-            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:text="THÔNG TIN SẢN PHẨM"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+
+            <Button
+                android:id="@+id/exit"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_gravity="right"
+                android:layout_marginLeft="120dp"
+                android:text="Xóa"
+                android:textColor="@color/design_default_color_primary_dark" />
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/line0"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
             <TextView
@@ -202,7 +217,6 @@
             android:background="@color/cardview_light_background"
             android:hint="Hãng xe..."
             android:verticalScrollbarPosition="right" />
-
 
 
     </RelativeLayout>

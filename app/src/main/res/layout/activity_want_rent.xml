@@ -131,10 +131,11 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/price123"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/line2"
-            android:layout_marginLeft="0dp"
+            android:layout_below="@+id/et_intro"
+            android:layout_marginLeft="1dp"
             android:layout_marginTop="10dp"
             android:background="@color/common_google_signin_btn_text_dark_focused"
             android:orientation="horizontal">
@@ -185,7 +186,7 @@
             android:id="@+id/want_rent_finish_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/et_intro"
+            android:layout_below="@+id/price123"
             android:layout_marginTop="30dp"
             android:background="@color/common_google_signin_btn_text_dark_focused"
             android:hint="Finish"

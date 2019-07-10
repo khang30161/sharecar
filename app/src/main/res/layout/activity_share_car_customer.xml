@@ -1,32 +1,244 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ShareCarCustomer">
+
     <ImageView
+
         android:id="@+id/iv_logo_share"
-        android:background="@color/common_google_signin_btn_text_dark_focused"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/logo1"/>
-    <RelativeLayout
-        android:id="@+id/line1"
-        android:layout_marginTop="25dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/common_google_signin_btn_text_dark_focused"
+        android:src="@drawable/logo1" />
+    <TextView
         android:layout_below="@+id/iv_logo_share"
+        android:id="@+id/introo"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:text="NHẬP THÔNG TIN TÌM KIẾM"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_1"
+        android:layout_width="match_parent"
+        android:layout_height="255dp"
+        android:layout_below="@+id/introo"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/yellow">
+
+        <LinearLayout
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:background="@color/common_google_signin_btn_text_dark_focused"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_startdate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="Ngày bắt đầu" />
+
+            <TextView
+                android:id="@+id/tv_startdate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="0dp"
+                android:text="yyyy/mm/dd"
+                android:textColor="@color/cardview_light_background" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/line1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/line"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/line40"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Điểm bắt đầu:"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="4dp"
+                android:background="@color/common_google_signin_btn_text_dark_focused" />
+
+            <LinearLayout
+                android:id="@+id/line41"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_below="@+id/line40"
+
+                android:background="@drawable/yellow"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/spinner_share"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="15dp" />
+
+                <Spinner
+                    android:id="@+id/spinner_district"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="15dp"
+                    android:visibility="gone" />
+
+                <Spinner
+                    android:id="@+id/spinner_war"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="15dp"
+                    android:visibility="gone" />
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/common_google_signin_btn_text_dark_focused" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/line2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/line1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/line50"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Điểm kết thúc"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="4dp"
+                android:background="@color/common_google_signin_btn_text_dark_focused" />
+
+            <LinearLayout
+                android:id="@+id/line51"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_below="@+id/line50"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/yellow"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/spinner_share1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="15dp" />
+
+                <Spinner
+                    android:id="@+id/spinner_district1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="15dp"
+                    android:visibility="gone" />
+
+                <Spinner
+                    android:id="@+id/spinner_war1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="15dp"
+                    android:visibility="gone" />
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/common_google_signin_btn_text_dark_focused" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/line21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/line2"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Số vị trí trống:"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+
+            <RadioGroup
+                android:layout_width="500dp"
+                android:layout_height="25dp"
+                android:background="@drawable/yellow"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rb_min1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2-3 chỗ"
+                    android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+
+                <RadioButton
+                    android:id="@+id/rb_max"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:text="4-5 chỗ"
+                    android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="253dp"
+            android:background="@color/common_google_signin_btn_text_dark_focused" />
+
 
     </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView
-        android:layout_marginTop="100dp"
         android:id="@+id/rv_customer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_1"
+        android:layout_marginTop="5dp">
 
     </android.support.v7.widget.RecyclerView>
 

@@ -157,6 +157,7 @@ public class RentOtoInfomation extends AppCompatActivity {
                             rentManager.setStyle(style);
                             rentManager.setUserId(Id);
                             rentManager.setIntro(intro);
+                            rentManager.setCategogy("Xe Ô tô");
                             databaseReference.child(id).setValue(rentManager);
                             mLocation.setText("");
                             mEnddate.setText("");

@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -19,7 +20,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -44,11 +44,11 @@ public class RentCar extends AppCompatActivity {
     FirebaseDatabase firebase;
     private RecyclerView recyclerView;
     private RentCarAdapter rentCarAdapter;
-    private TextView mLocation, mStartday, mEndday;
+    private TextView mLocation, mStartday, mEndday, mTvButton, mTvLoaixe;
     private Button mBtnStartday, mBtnEndday, mAddpro;
     private Spinner spinner;
     private ImageView logo;
-    private RadioButton mRent;
+    private RadioButton mRent, mNeedRent, mRentOto, mRentBike;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,8 +63,13 @@ public class RentCar extends AppCompatActivity {
         mStartday = findViewById(R.id.tv_pickup);
         mLocation = findViewById(R.id.tv_local);
         mRent = findViewById(R.id.renttttt);
+        mNeedRent = findViewById(R.id.needrentt);
+        mTvButton = findViewById(R.id.tv_button);
         spinner = findViewById(R.id.spinner);
         mAddpro = findViewById(R.id.add_product);
+        mRentOto = findViewById(R.id.rb_oto);
+        mRentBike = findViewById(R.id.rb_xemay);
+        mTvLoaixe = findViewById(R.id.tv_loaixe);
 
         mAddpro.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,6 +94,8 @@ public class RentCar extends AppCompatActivity {
         spinner.setAdapter(adapter);
         //thiết lập sự kiện chọn phần tử cho Spinner
         spinner.setOnItemSelectedListener(new MyProcessEvent());
+        mRent.setOnCheckedChangeListener(new Radio_check());
+        mRentBike.setOnCheckedChangeListener(new Radio_check1());
 
         recyclerView = findViewById(R.id.rv_rentcar);
         recyclerView.setHasFixedSize(true);
@@ -101,13 +108,14 @@ public class RentCar extends AppCompatActivity {
                 finish();
             }
         });
-
+        setupRecycleView();
+        queryFilter();
     }
 
     private void endDatePickerDialog() {
 
 
-        mBtnEndday.setOnClickListener(new View.OnClickListener() {
+        mEndday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Create a new OnDateSetListener instance. This listener will be invoked when user click ok button in DatePickerDialog.
@@ -124,6 +132,7 @@ public class RentCar extends AppCompatActivity {
 
 
                         mEndday.setText(strBuf.toString());
+                        queryFilter();
                     }
                 };
 
@@ -144,7 +153,7 @@ public class RentCar extends AppCompatActivity {
     }
 
     private void showDatePickerDialog() {
-        mBtnStartday.setOnClickListener(new View.OnClickListener() {
+        mStartday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Create a new OnDateSetListener instance. This listener will be invoked when user click ok button in DatePickerDialog.
@@ -160,6 +169,7 @@ public class RentCar extends AppCompatActivity {
                         strBuf.append(dayOfMonth);
 
                         mStartday.setText(strBuf.toString());
+                        queryFilter();
                     }
                 };
 
@@ -182,74 +192,34 @@ public class RentCar extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        databaseReference.addValueEventListener(new ValueEventListener() {
+    }
+
+    private void setupRecycleView() {
+        rentCarAdapter = new RentCarAdapter(rentManagers, getApplicationContext(), new RentCarAdapter.Action() {
             @Override
-            public void onDataChange(@NonNull final DataSnapshot dataSnapshot) {
-                for (DataSnapshot rentSnapshot : dataSnapshot.getChildren()) {
-                    RentManagers rentManager = rentSnapshot.getValue(RentManagers.class);
-                    if (rentManager.getUserIdBook() != null) {
-                        continue;
-                    } else {
-                        rentManagers.add(rentManager);
-
-                    }
-                    queryFilter();
-
-                }
-                rentCarAdapter = new RentCarAdapter(this, rentManagers, getApplicationContext(), new RentCarAdapter.Action() {
-                    @Override
-                    public void onClickItem(RentManagers manager, int position) {
-                        Intent intent = new Intent(RentCar.this, SelectItem.class);
-                        intent.putExtra("rentManager", manager);
-                        startActivity(intent);
-                    }
-
-                    @Override
-                    public void onLongClickItem(RentManagers manager, int position) {
-
-                    }
-                });
-                RecyclerView.LayoutManager layoutmanager = new LinearLayoutManager(RentCar.this);
-                recyclerView.setLayoutManager(layoutmanager);
-                recyclerView.setItemAnimator(new DefaultItemAnimator());
-                recyclerView.setAdapter(rentCarAdapter);
-                //queryByUserId();
-
+            public void onClickItem(RentManagers manager, int position) {
+                Intent intent = new Intent(RentCar.this, SelectItem.class);
+                intent.putExtra("rentManager", manager);
+                startActivity(intent);
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+            public void onLongClickItem(RentManagers manager, int position) {
 
             }
         });
-
+        RecyclerView.LayoutManager layoutmanager = new LinearLayoutManager(RentCar.this);
+        recyclerView.setLayoutManager(layoutmanager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(rentCarAdapter);
     }
 
-    private void queryByUserId() {
-        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        databaseReference.orderByChild("userId").equalTo(uid).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                rentManagers.clear();
-                for (DataSnapshot rentSnapshot : dataSnapshot.getChildren()) {
-                    RentManagers rentManager = rentSnapshot.getValue(RentManagers.class);
-                    rentManagers.add(rentManager);
-                }
-
-                rentCarAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
 
     private void queryFilter() {
-        String local = mLocation.getText().toString();
-        final String phanquyen = (mRent.isChecked() == true) ? "Cần Cho Thuê" : "Cần Thuê";
+        String local = spinner.getSelectedItem().toString();
+        final String style = mTvButton.getText().toString();
         final String start = mStartday.getText().toString();
+        final String style2 = mTvLoaixe.getText().toString();
         final String end = mEndday.getText().toString();
         databaseReference.orderByChild("location").equalTo(local)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
@@ -258,15 +228,32 @@ public class RentCar extends AppCompatActivity {
                         rentManagers.clear();
                         for (DataSnapshot rentSnapshot : dataSnapshot.getChildren()) {
                             RentManagers rentManager = rentSnapshot.getValue(RentManagers.class);
+                            boolean isAdd = true;
                             if (rentManager.getUserIdBook() != null) {
                                 continue;
-                            } else if (rentManager.getStartdate().equals(start) && start == null) {
-                                continue;
-                            } else if (rentManager.getStartdate().equals(start) && rentManager.getEnddate().equals(end) && rentManager.getStyle().equals(phanquyen)) {
-                                rentManagers.add(rentManager);
+                            }
+//                            else if (rentManager.getStartdate().equals(start) && start == null) {
+//                                continue;
+//                            } else if (rentManager.getStartdate().equals(start) && rentManager.getEnddate().equals(end) && rentManager.getStyle().equals(phanquyen)) {
+//                                rentManagers.add(rentManager);
+//                            }
+                            if (!start.equals("") && !start.equals(rentManager.getStartdate())) {
+                                isAdd = false;
+                            }
+                            if (!end.equals("") && !end.equals(rentManager.getEnddate())) {
+                                isAdd = false;
+                            }
+                            if (!style.equals("") && !style.equals(rentManager.getStyle())) {
+                                isAdd = false;
+                            }
+                            if (!style2.equals("") && !style2.equals(rentManager.getCategogy())) {
+                                isAdd = false;
                             }
 
 
+                            if (isAdd) {
+                                rentManagers.add(rentManager);
+                            }
                         }
 
                         rentCarAdapter.notifyDataSetChanged();
@@ -283,6 +270,35 @@ public class RentCar extends AppCompatActivity {
                 });
     }
 
+    class Radio_check implements CompoundButton.OnCheckedChangeListener {
+
+        @Override
+        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            if (mRent.isChecked()) {
+                mTvButton.setText("Cần Cho Thuê");
+            } else if (mNeedRent.isChecked()) {
+                mTvButton.setText("Cần Thuê");
+            }
+            queryFilter();
+
+        }
+    }
+
+    class Radio_check1 implements CompoundButton.OnCheckedChangeListener {
+
+        @Override
+        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+            if (mRentBike.isChecked()) {
+                mTvLoaixe.setText("Xe máy");
+            } else if (mRentOto.isChecked()) {
+                mTvLoaixe.setText("Xe Ô tô");
+            }
+            queryFilter();
+
+        }
+    }
+
 
     class MyProcessEvent implements
             AdapterView.OnItemSelectedListener {
@@ -292,12 +308,13 @@ public class RentCar extends AppCompatActivity {
                                    int arg2,
                                    long arg3) {
             //arg2 là phần tử được chọn trong data source
-            mLocation.setText(arr[arg2]);
+
+            queryFilter();
         }
 
         //Nếu không chọn gì cả
         public void onNothingSelected(AdapterView<?> arg0) {
-            mLocation.setText("");
+
         }
     }
 }
