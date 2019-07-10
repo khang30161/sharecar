@@ -22,24 +22,26 @@
             android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
         <RadioGroup
-            android:layout_marginTop="25dp"
             android:id="@+id/rg_need"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/xe_cho_thue"
+            android:layout_marginTop="25dp"
             android:orientation="horizontal">
+
             <RadioButton
                 android:id="@+id/can_thue"
-                android:layout_marginLeft="60dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cần Thuê"/>
+                android:layout_marginLeft="60dp"
+                android:text="Cần Thuê" />
+
             <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="70dp"
                 android:layout_marginRight="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Cần Cho Thuê"/>
+                android:text="Cần Cho Thuê" />
 
         </RadioGroup>
 
@@ -129,6 +131,7 @@
             </LinearLayout>
 
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/line14"
             android:layout_width="wrap_content"
@@ -208,14 +211,48 @@
 
         </LinearLayout>
 
+        <LinearLayout
 
+            android:id="@+id/line12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/line15"
+            android:layout_marginTop="35dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/stylecar"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:layout_marginLeft="20dp"
+                android:background="@color/common_google_signin_btn_text_dark_focused"
+                android:text="Loại xe"
+                android:textColor="@color/cardview_light_background" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/dongxe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/cardview_light_background"
+                    android:hint="Dòng xe..........."
+                    android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+            </LinearLayout>
+
+        </LinearLayout>
 
 
         <LinearLayout
-            android:layout_below="@+id/line15"
             android:id="@+id/line5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/line12"
             android:orientation="vertical">
 
             <Button
@@ -235,6 +272,7 @@
                 android:layout_marginTop="30dp" />
 
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/price456"
             android:layout_width="match_parent"

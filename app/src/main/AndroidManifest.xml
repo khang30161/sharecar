@@ -18,7 +18,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".InfoDetail"></activity>
+        <activity android:name=".Chatbox"></activity>
+        <activity android:name=".InfoDetail" />
         <activity android:name=".ContactDichungxe" />
         <activity android:name=".ContactRent" />
         <activity android:name=".SelectItemShareCustomer" />

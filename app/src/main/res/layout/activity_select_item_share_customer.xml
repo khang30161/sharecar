@@ -130,23 +130,18 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Id:"
+                android:text="Thông tin chủ xe:"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
             <TextView
+                android:layout_marginLeft="5dp"
                 android:id="@+id/tv_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="......"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+                android:textColor="@color/text_color" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:text="Ngày đăng: "
-                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
-        </LinearLayout>
+           </LinearLayout>
 
 
         <LinearLayout

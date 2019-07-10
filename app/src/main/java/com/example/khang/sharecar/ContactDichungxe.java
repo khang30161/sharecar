@@ -1,5 +1,7 @@
 package com.example.khang.sharecar;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -17,7 +19,7 @@ public class ContactDichungxe extends AppCompatActivity {
     private ImageView mPic;
     private TextView Id;
     private Button mSelect;
-    private TextView mCityStart, mDistrictStart, mWardStart, mCityEnd, mDistrictEnd, mWardEnd, isbooking1, isbooking2;
+    private TextView mCityStart, mDistrictStart, mWardStart, mCityEnd, mDistrictEnd, mWardEnd, isbooking1, isbooking2, isbooking3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,7 @@ public class ContactDichungxe extends AppCompatActivity {
         mSochongoi = findViewById(R.id.tv_so_cho_ngoi);
         isbooking1=findViewById(R.id.isboking);
         isbooking2=findViewById(R.id.isboking2);
+        isbooking3=findViewById(R.id.isboking3);
         mLoaixe = findViewById(R.id.tv_loai_xe);
         mDOngxe = findViewById(R.id.tv_dong_xe);
         mSochotrong = findViewById(R.id.tv_so_ghe_trong);
@@ -52,6 +55,8 @@ public class ContactDichungxe extends AppCompatActivity {
         mEndtimeH.setText(String.valueOf(shareManager.getEndtimeh()));
         mEndtimeP.setText(String.valueOf(shareManager.getEndtimem()));
         isbooking1.setText(shareManager.getIsbooking1());
+        isbooking2.setText(shareManager.getIsBooking2());
+        isbooking3.setText(shareManager.getIsBooking3());
         mCityStart.setText(shareManager.getLocalcity());
         mCityEnd.setText(shareManager.getLocalcity1());
         mDistrictStart.setText(shareManager.getLocalquan());
@@ -68,11 +73,54 @@ public class ContactDichungxe extends AppCompatActivity {
         Glide.with(
                 ContactDichungxe.this).load(shareManager.getUrl()).into(mPic);
 
-        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        isbooking1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(ContactDichungxe.this, InfoDetail.class);
+                String prefname = "my_data";
+                SharedPreferences pre = ContactDichungxe.this.getSharedPreferences(prefname, MODE_PRIVATE);
+                SharedPreferences.Editor editor = pre.edit();
+                String userid = Id.getText().toString();
 
 
-        //DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference().child("Users").child("Drivers").child(uid);
+                editor.putString("id", userid);
 
+                editor.apply();
+                startActivity(intent);
+            }
+        });
+        isbooking2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(ContactDichungxe.this, InfoDetail.class);
+                String prefname = "my_data";
+                SharedPreferences pre = ContactDichungxe.this.getSharedPreferences(prefname, MODE_PRIVATE);
+                SharedPreferences.Editor editor = pre.edit();
+                String userid = Id.getText().toString();
+
+
+                editor.putString("id", userid);
+
+                editor.apply();
+                startActivity(intent);
+            }
+        });
+        isbooking3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(ContactDichungxe.this, InfoDetail.class);
+                String prefname = "my_data";
+                SharedPreferences pre = ContactDichungxe.this.getSharedPreferences(prefname, MODE_PRIVATE);
+                SharedPreferences.Editor editor = pre.edit();
+                String userid = Id.getText().toString();
+
+
+                editor.putString("id", userid);
+
+                editor.apply();
+                startActivity(intent);
+            }
+        });
 
     }
 }

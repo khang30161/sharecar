@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.RadioButton;
 import android.widget.Spinner;
@@ -46,8 +47,8 @@ public class ShareCarCustomer extends AppCompatActivity {
     private JSONArray wardListSelect;
     private Spinner mSpinner, mSpinnerDistrict, mSpinnerWard, mSpinner1, mSpinnerDistrict1, mSpinnerWard1;
     private Button mStartdate;
-    private TextView mTvStartdate;
-    private RadioButton mMin;
+    private TextView mTvStartdate, mTvdisplay;
+    private RadioButton mMin, mMax;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +68,11 @@ public class ShareCarCustomer extends AppCompatActivity {
         mStartdate = findViewById(R.id.btn_startdate);
         mTvStartdate = findViewById(R.id.tv_startdate);
         mMin = findViewById(R.id.rb_min1);
+        mMax=findViewById(R.id.rb_max);
+        mTvdisplay=findViewById(R.id.tv_display);
         showDatePickerDialog();
+
+
         final ArrayList<String> arrCityList = new ArrayList<>();
 
         try {
@@ -88,52 +93,26 @@ public class ShareCarCustomer extends AppCompatActivity {
         mSpinner.setAdapter(adapter);
         mSpinner1.setAdapter(adapter);
         //thiết lập sự kiện chọn phần tử cho Spinner
-        mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> arg0, View arg1,
-                                       int index,
-                                       long arg3) {
-                try {
-                    JSONObject city = dataLocation.getJSONObject(index);
-                    districtListSelect = city.getJSONArray("district");
+        mSpinner.setOnItemSelectedListener(new MyProcessEvent());
 
-                    Log.e("TEst", districtListSelect.toString());
+        mSpinner1.setOnItemSelectedListener(new MyProcessEvent1());
+        mMin.setOnCheckedChangeListener(new RadioCheck());
+        setupRecycleview();
+//        queryFilter();
 
-                    showSpinnerDistrict();
+    }
+    class RadioCheck  implements CompoundButton.OnCheckedChangeListener {
 
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
+        @Override
+        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            if(mMin.isChecked()){
+                mTvdisplay.setText("2-3 chỗ");
             }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> arg0) {
+            if(mMax.isChecked()){
+                mTvdisplay.setText("4-5 chỗ");
             }
-        });
-        mSpinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> arg0, View arg1,
-                                       int index,
-                                       long arg3) {
-                try {
-                    JSONObject city = dataLocation.getJSONObject(index);
-                    districtListSelect = city.getJSONArray("district");
-
-                    Log.e("TEst", districtListSelect.toString());
-
-                    showSpinnerDistrict1();
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> arg0) {
-            }
-        });
+            queryFilter();
+        }
     }
 
     private void showSpinnerDistrict() {
@@ -166,6 +145,7 @@ public class ShareCarCustomer extends AppCompatActivity {
                     wardListSelect = district.getJSONArray("ward");
                     Log.e("TEst", wardListSelect.toString());
                     showSpinnerWard();
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -174,6 +154,7 @@ public class ShareCarCustomer extends AppCompatActivity {
 //                    loadFragment(new hcm_map());
 //
 //                }
+                //queryFilter();
 
             }
 
@@ -182,8 +163,6 @@ public class ShareCarCustomer extends AppCompatActivity {
             }
         });
     }
-
-
 
     private void showSpinnerWard() {
         mSpinnerWard.setVisibility(View.VISIBLE);
@@ -211,6 +190,7 @@ public class ShareCarCustomer extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> arg0, View arg1,
                                        int index,
                                        long arg3) {
+                queryFilter();
 
             }
 
@@ -250,6 +230,7 @@ public class ShareCarCustomer extends AppCompatActivity {
                     wardListSelect = district.getJSONArray("ward");
                     Log.e("TEst", wardListSelect.toString());
                     showSpinnerWard1();
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -258,7 +239,7 @@ public class ShareCarCustomer extends AppCompatActivity {
 //                    loadFragment(new hcm_map());
 //
 //                }
-
+                queryFilter();
             }
 
             @Override
@@ -293,6 +274,7 @@ public class ShareCarCustomer extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> arg0, View arg1,
                                        int index,
                                        long arg3) {
+                queryFilter();
 
             }
 
@@ -301,60 +283,32 @@ public class ShareCarCustomer extends AppCompatActivity {
             }
         });
     }
-    @Override
-    protected void onStart() {
-        super.onStart();
-        databaseReference.addValueEventListener(new ValueEventListener() {
+
+    private void setupRecycleview() {
+        shareCarAdapter = new ShareCarAdapter(shareManager, getApplicationContext(), new ShareCarAdapter.Action() {
+
             @Override
-            public void onDataChange(@NonNull final DataSnapshot dataSnapshot) {
-                for (DataSnapshot rentSnapshot : dataSnapshot.getChildren()) {
-                    ShareManager shareManagers = rentSnapshot.getValue(ShareManager.class);
-                    int seat = Integer.parseInt(shareManagers.getSeat());
-                    if (shareManagers.getIsbooking1() != null && shareManagers.getIsBooking2() != null && shareManagers.getIsBooking3() != null && seat == 4) {
-                        continue;
-                    } else if (shareManagers.getIsbooking1() != null && shareManagers.getIsBooking2() != null && shareManagers.getIsBooking3() != null && shareManagers.getIsBooking4() != null && shareManagers.getIsBooking5() != null && seat == 6) {
-                        continue;
-
-                    } else {
-                        shareManager.add(shareManagers);
-                    }
-                    queryFilter();
-                }
-                shareCarAdapter = new ShareCarAdapter(shareManager, getApplicationContext(), new ShareCarAdapter.Action() {
-
-                    @Override
-                    public void onClickItem(ShareManager shareManager, int position) {
-                        Intent intent = new Intent(ShareCarCustomer.this, SelectItemShareCustomer.class);
-                        intent.putExtra("shareManager", shareManager);
-                        startActivity(intent);
-
-                    }
-
-                    @Override
-                    public void onLongClickItem(ShareManager shareManager, int position) {
-
-                    }
-                });
-                RecyclerView.LayoutManager layoutmanager = new LinearLayoutManager(ShareCarCustomer.this);
-                recyclerView.setLayoutManager(layoutmanager);
-                recyclerView.setItemAnimator(new DefaultItemAnimator());
-                recyclerView.setAdapter(shareCarAdapter);
-                //queryByUserId();
+            public void onClickItem(ShareManager shareManager, int position) {
+                Intent intent = new Intent(ShareCarCustomer.this, SelectItemShareCustomer.class);
+                intent.putExtra("shareManager", shareManager);
+                startActivity(intent);
 
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
+            public void onLongClickItem(ShareManager shareManager, int position) {
 
             }
         });
-
+        RecyclerView.LayoutManager layoutmanager = new LinearLayoutManager(ShareCarCustomer.this);
+        recyclerView.setLayoutManager(layoutmanager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(shareCarAdapter);
     }
 
     private void queryFilter() {
         String ngaybđ = mTvStartdate.getText().toString();
-        final String phanquyen = (mMin.isChecked() == true) ? "2-3 chỗ" : "4-5 chỗ";
+        final String phanquyen = mTvdisplay.getText().toString();
         final String citystart = mSpinner.getSelectedItem().toString();
         final String cityend = mSpinner1.getSelectedItem().toString();
         final String districtstart = mSpinnerDistrict.getSelectedItem().toString();
@@ -368,9 +322,38 @@ public class ShareCarCustomer extends AppCompatActivity {
                         shareManager.clear();
                         for (DataSnapshot rentSnapshot : dataSnapshot.getChildren()) {
                             ShareManager shareManagers = rentSnapshot.getValue(ShareManager.class);
-                            if (shareManagers.getLocalcity().equals(citystart) && shareManagers.getLocalquan().equals(districtstart) && shareManagers.getLocalphuong().equals(wardstart) && shareManagers.getLocalcity1().equals(cityend) && shareManagers.getLocalquan1().equals(districtend) && shareManagers.getLocalphuong1().equals(wardend) && shareManagers.getSovitri().equals(phanquyen)) {
-                                shareManager.add(shareManagers);
+                            boolean isadd = true;
+                            int seat = Integer.parseInt(shareManagers.getSeat());
+                            if (shareManagers.getIsbooking1() != null && shareManagers.getIsBooking2() != null && shareManagers.getIsBooking3() != null && seat == 4) {
+                                continue;
+                            } else if (shareManagers.getIsbooking1() != null && shareManagers.getIsBooking2() != null && shareManagers.getIsBooking3() != null && shareManagers.getIsBooking4() != null && shareManagers.getIsBooking5() != null && seat == 6) {
+                                continue;
 
+                            }
+                            if (!citystart.equals("") && !citystart.equals(shareManagers.getLocalcity())) {
+                                isadd = false;
+                            }
+
+                            if (!districtstart.equals("") && !districtstart.equals(shareManagers.getLocalquan())) {
+                                isadd = false;
+                            }
+                            if (!wardstart.equals("") && !wardstart.equals(shareManagers.getLocalphuong())) {
+                                isadd = false;
+                            }
+                            if (!cityend.equals("") && !cityend.equals(shareManagers.getLocalcity1())) {
+                                isadd = false;
+                            }
+                            if (!districtend.equals("") && !districtend.equals(shareManagers.getLocalquan1())) {
+                                isadd = false;
+                            }
+                            if (!wardend.equals("") && !wardend.equals(shareManagers.getLocalphuong1())) {
+                                isadd = false;
+                            }
+                            if (!phanquyen.equals("") && !phanquyen.equals(shareManagers.getSovitri())) {
+                                isadd = false;
+                            }
+                            if (isadd) {
+                                shareManager.add(shareManagers);
                             }
                         }
                         shareCarAdapter.notifyDataSetChanged();
@@ -386,9 +369,6 @@ public class ShareCarCustomer extends AppCompatActivity {
                     }
                 });
     }
-
-
-
 
     private void readJsonLocation() {
         String json = null;
@@ -437,6 +417,7 @@ public class ShareCarCustomer extends AppCompatActivity {
                         strBuf.append(dayOfMonth);
 
                         mTvStartdate.setText(strBuf.toString());
+                        queryFilter();
                     }
                 };
 
@@ -455,5 +436,62 @@ public class ShareCarCustomer extends AppCompatActivity {
             }
         });
     }
+
+    class MyProcessEvent implements
+            AdapterView.OnItemSelectedListener {
+        //Khi có chọn lựa thì vào hàm này
+        public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                   int index,
+                                   long arg3) {
+
+            try {
+                JSONObject city = dataLocation.getJSONObject(index);
+                districtListSelect = city.getJSONArray("district");
+
+                Log.e("TEst", districtListSelect.toString());
+
+                showSpinnerDistrict();
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            //  queryFilter();
+        }
+
+        //Nếu không chọn gì cả
+        public void onNothingSelected(AdapterView<?> arg0) {
+
+        }
+    }
+
+    class MyProcessEvent1 implements AdapterView.OnItemSelectedListener {
+        @Override
+        public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                   int index,
+                                   long arg3) {
+            try {
+                JSONObject city = dataLocation.getJSONObject(index);
+                districtListSelect = city.getJSONArray("district");
+
+                Log.e("TEst", districtListSelect.toString());
+
+                showSpinnerDistrict1();
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            //queryFilter();
+
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> arg0) {
+        }
+    }
+
+
 }
 

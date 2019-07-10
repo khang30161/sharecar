@@ -57,6 +57,9 @@ public class RentOtoInfomation extends AppCompatActivity {
     ImageView mPictureRent;
     Button mAddPic;
     private Uri filePath;
+    private ImageView mToyota, mFord, mBwm, mMercedes, mVinfast, mHonda, mLambo, mKia;
+    private EditText mDongxe;
+    private TextView mStylecar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +80,67 @@ public class RentOtoInfomation extends AppCompatActivity {
         mStyle=findViewById(R.id.can_thue);
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
+
+        mStylecar = findViewById(R.id.stylecar);
+        mDongxe = findViewById(R.id.dongxe);
+        mToyota = findViewById(R.id.toyota);
+        mMercedes = findViewById(R.id.merce);
+        mVinfast = findViewById(R.id.vinf);
+        mKia = findViewById(R.id.kia);
+        mLambo = findViewById(R.id.lambo);
+        mHonda = findViewById(R.id.honda);
+        mBwm = findViewById(R.id.bwm);
+        mFord = findViewById(R.id.ford);
+
+        mToyota.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mStylecar.setText("Toyota");
+            }
+        });
+        mMercedes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mStylecar.setText("Mercedes");
+            }
+        });
+        mKia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mStylecar.setText("Kia");
+            }
+        });
+        mVinfast.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mStylecar.setText("Vinfast");
+            }
+        });
+        mFord.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mStylecar.setText("Ford");
+            }
+        });
+        mBwm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mStylecar.setText("Bwm");
+            }
+        });
+        mHonda.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mStylecar.setText("Honda");
+            }
+        });
+        mLambo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mStylecar.setText("Lamborghini");
+            }
+        });
+
         finish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -144,6 +208,8 @@ public class RentOtoInfomation extends AppCompatActivity {
                         String price = mPrice.getText().toString();
                         String style =mStyle.getText().toString();
                         String intro=mIntro.getText().toString();
+                        String dongxe=mDongxe.getText().toString();
+                        String loaixe=mStylecar.getText().toString();
                         String abc = taskResult.toString();
                         if (!TextUtils.isEmpty(location) && !TextUtils.isEmpty(startdate)) {
                             String id = databaseReference.push().getKey();
@@ -157,6 +223,8 @@ public class RentOtoInfomation extends AppCompatActivity {
                             rentManager.setStyle(style);
                             rentManager.setUserId(Id);
                             rentManager.setIntro(intro);
+                            rentManager.setDongxe(dongxe);
+                            rentManager.setLoaixe(loaixe);
                             rentManager.setCategogy("Xe Ô tô");
                             databaseReference.child(id).setValue(rentManager);
                             mLocation.setText("");

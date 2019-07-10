@@ -18,7 +18,7 @@
         android:layout_marginRight="60dp"
         android:layout_marginBottom="5dp"
         android:background="@color/common_google_signin_btn_text_dark_focused"
-        android:text="NHẬP SẢN PHẨM CỦA BẠN!!!"
+        android:text="NHẬP THÔNG TIN XE CỦA BẠN!!!"
         android:textColor="@color/cardview_light_background" />
 
     <ImageView

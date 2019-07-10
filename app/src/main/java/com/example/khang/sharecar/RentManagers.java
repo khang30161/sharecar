@@ -1,9 +1,6 @@
 package com.example.khang.sharecar;
 
-import android.net.Uri;
 import android.widget.ImageView;
-
-import com.google.firebase.storage.UploadTask;
 
 import java.io.Serializable;
 
@@ -11,7 +8,7 @@ public class RentManagers implements Serializable {
     private String id;
     private String startdate;
     private String style;
-     private String enddate;
+    private String enddate;
     private String location;
     private String price;
     private ImageView picture;
@@ -21,6 +18,33 @@ public class RentManagers implements Serializable {
     private String userIdBook;
     private String key;
     private String categogy;
+    private String loaixe;
+    private String dongxe;
+
+    public RentManagers() {
+        this.id = id;
+        this.startdate = startdate;
+        this.enddate = enddate;
+        this.location = location;
+        this.price = price;
+
+    }
+
+    public String getLoaixe() {
+        return loaixe;
+    }
+
+    public void setLoaixe(String loaixe) {
+        this.loaixe = loaixe;
+    }
+
+    public String getDongxe() {
+        return dongxe;
+    }
+
+    public void setDongxe(String dongxe) {
+        this.dongxe = dongxe;
+    }
 
     public String getCategogy() {
         return categogy;
@@ -74,12 +98,24 @@ public class RentManagers implements Serializable {
         return startdate;
     }
 
+    public void setStartdate(String startdate) {
+        this.startdate = startdate;
+    }
+
     public String getEnddate() {
         return enddate;
     }
 
+    public void setEnddate(String enddate) {
+        this.enddate = enddate;
+    }
+
     public String getLocation() {
         return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public String getId() {
@@ -90,24 +126,12 @@ public class RentManagers implements Serializable {
         this.id = id;
     }
 
-    public void setStartdate(String startdate) {
-        this.startdate = startdate;
-    }
-
-    public void setEnddate(String enddate) {
-        this.enddate = enddate;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
+    public String getPrice() {
+        return price;
     }
 
     public void setPrice(String price) {
         this.price = price;
-    }
-
-    public String getPrice() {
-        return price;
     }
 
     public String getUserIdBook() {
@@ -116,14 +140,5 @@ public class RentManagers implements Serializable {
 
     public void setUserIdBook(String userIdBook) {
         this.userIdBook = userIdBook;
-    }
-
-    public RentManagers() {
-        this.id=id;
-        this.startdate = startdate;
-        this.enddate = enddate;
-        this.location = location;
-        this.price = price;
-
     }
 }

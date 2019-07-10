@@ -55,7 +55,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
                 android:layout_marginTop="0dp"
-                android:text="yyyy/mm/dd"
+                android:hint="yyyy/mm/dd"
+                android:textColorHint="@color/cardview_light_background"
                 android:textColor="@color/cardview_light_background" />
         </LinearLayout>
 
@@ -220,7 +221,13 @@
                     android:layout_marginLeft="50dp"
                     android:text="4-5 chỗ"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/tv_display"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
             </RadioGroup>
+
 
         </LinearLayout>
 

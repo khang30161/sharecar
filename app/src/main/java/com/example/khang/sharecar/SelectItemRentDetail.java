@@ -69,22 +69,8 @@ public class SelectItemRentDetail extends AppCompatActivity {
         mDel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                databaseReference.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        String key=dataSnapshot.getKey();
-                        databaseReference = FirebaseDatabase.getInstance().getReference("post").child(key);
-                        databaseReference. removeValue();
-                        Toast.makeText(SelectItemRentDetail.this, "Đã xóa", Toast.LENGTH_SHORT).show();
-
-
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
+                Intent intent=new Intent(SelectItemRentDetail.this, Chatbox.class);
+                startActivity(intent);
 
             }
         });
